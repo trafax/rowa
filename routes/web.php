@@ -24,6 +24,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('page/sort', 'PageController@sort')->name('page.sort');
 
     Route::post('asset/upload', 'AssetController@upload')->name('asset.upload');
+    Route::post('asset/upload_onthefly', 'AssetController@upload_onthefly')->name('asset.upload_onthefly');
+    Route::get('asset/{asset}/delete', 'AssetController@delete')->name('asset.delete');
+    Route::post('asset/sort', 'AssetController@sort')->name('asset.sort');
+    Route::post('asset/single_dropzone', 'AssetController@single_dropzone')->name('asset.single_dropzone');
 });
 
 Auth::routes();

@@ -11371,3 +11371,29 @@ a.text-dark:focus {
   z-index: 2;
 }
 
+.dz-preview .dz-image {
+  border-radius: 20px;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: block;
+  z-index: 10;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.dz-preview .dz-image .thumb-delete {
+  position: absolute;
+  display: none;
+}
+
+.dz-preview .dz-image:hover .thumb-delete {
+  display: block;
+}
+

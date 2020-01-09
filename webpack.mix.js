@@ -16,3 +16,7 @@ mix.js('resources/js/website.js', 'public/js')
     .sass('resources/sass/website.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .version();
+
+mix.copy('node_modules/tinymce/skins', 'public/js/skins');
+mix.copy('node_modules/tinymce/themes', 'public/js/themes');
+mix.copy('node_modules/tinymce/plugins', 'public/js/plugins');

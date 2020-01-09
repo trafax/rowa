@@ -14,7 +14,7 @@ class Page extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'parent_id', 'title', 'slug', 'seo', 'sort'
+        'parent_id', 'title', 'content', 'slug', 'seo', 'navigation_image', 'sort'
     ];
 
     public $casts = [
@@ -24,5 +24,10 @@ class Page extends Model
     public function children()
     {
         return $this->hasMany(Page::class, 'parent_id', 'id');
+    }
+
+    public function assets()
+    {
+        return $this->hasMany(Asset::class, 'parent_id', 'id')->orderBy('sort');
     }
 }

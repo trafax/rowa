@@ -18,8 +18,10 @@ class CreatePagesTable extends Migration
             $table->primary('id');
             $table->uuid('parent_id')->default(0);
             $table->string('title');
+            $table->longText('content')->nullable();
             $table->string('slug')->nullable();
             $table->longText('seo')->nullable();
+            $table->string('navigation_image')->nullable();
             $table->integer('sort')->default(0);
             $table->timestamps();
             $table->softDeletes();

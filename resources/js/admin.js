@@ -5,6 +5,18 @@ require('checkboxes.js/dist/jquery.checkboxes-1.2.2');
 window.sortable = require('jquery-ui/ui/widgets/sortable');
 window.Dropzone = require('dropzone');
 
+require('tinymce');
+require('tinymce/plugins/paste');
+require('tinymce/plugins/advlist');
+require('tinymce/plugins/lists');
+require('tinymce/plugins/link');
+require('tinymce/plugins/image');
+require('tinymce/plugins/preview');
+require('tinymce/plugins/anchor');
+require('tinymce/plugins/code');
+require('tinymce/plugins/media');
+require('tinymce/plugins/table');
+
 $(function(){
 
     $('.toast').toast('show');
@@ -84,4 +96,21 @@ $(function(){
            });
         }
      });
+
+     tinymce.init({
+        selector: ".editor",
+        height: 300,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'visualblocks code fullscreen',
+            'media table paste code'
+        ],
+        toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+        content_css: [
+            //'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '/css/website.css',
+            //'//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
 });
