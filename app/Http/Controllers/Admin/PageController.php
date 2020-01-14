@@ -63,8 +63,6 @@ class PageController extends Controller
 
     public function sort(Request $request)
     {
-        //dd($request->get('items'));
-
         foreach ($request->get('items') as $index => $id)
         {
             Page::find($id)->update(['sort' => $index]);

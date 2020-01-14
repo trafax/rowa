@@ -11,8 +11,8 @@ class PageController extends Controller
         return view('pages.homepage');
     }
 
-    public function index()
+    public function index($slug)
     {
-        //return view();
+        return view('pages.homepage');
     }
 }

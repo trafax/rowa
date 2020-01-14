@@ -5,6 +5,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~dropzone/dist/min/dropzone.min.css';
 
+body, .form-control, .dropdown-item {
+    font-size: 0.9rem !important;
+}
+
 .navbar {
     .nav-link {
         text-transform: uppercase;

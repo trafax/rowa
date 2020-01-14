@@ -14,7 +14,7 @@ class Page extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'parent_id', 'title', 'content', 'slug', 'seo', 'navigation_image', 'sort'
+        'parent_id', 'webshop_category_id', 'title', 'content', 'slug', 'seo', 'navigation_image', 'sort'
     ];
 
     public $casts = [

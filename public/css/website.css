@@ -11360,6 +11360,11 @@ body {
   font-family: "dinlight", sans-serif;
   color: #2a363b;
   overflow: hidden;
+  font-size: 15px;
+}
+
+#header {
+  box-shadow: 0 4px 4px -2px #CCC;
 }
 
 @media (min-width: 990px) {
@@ -11450,6 +11455,7 @@ body {
     position: absolute;
     left: 0;
     margin-top: 10px;
+    z-index: 2;
   }
 
   #header #main-menu ul li .sub-menu .sub-menu-title {
@@ -11468,6 +11474,8 @@ body {
 
 #header #main-menu ul li .sub-menu .container .menu-image {
   border: white solid 4px;
+  max-width: 250px;
+  max-height: 150px;
 }
 
 #header #main-menu ul li .sub-menu .container ul {
@@ -11518,5 +11526,33 @@ body {
     color: #2a363b;
     border-bottom: none;
   }
+}
+
+@media (min-width: 990px) {
+  .main.container {
+    width: 1240px;
+    max-width: 1240px;
+  }
+}
+
+.main .top {
+  padding-top: 80px;
+  padding-bottom: 60px;
+  color: #2a363b;
+  font-weight: bold;
+}
+
+.main .top a {
+  color: #2a363b;
+}
+
+h2.category {
+  font-family: "dinbold", "sans-serif";
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.category-container .description {
+  font-family: "dinbold", "sans-serif";
 }
 

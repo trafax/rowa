@@ -45,6 +45,15 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.page.index') }}" class="nav-link">Pagina's</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Webshop
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.webshopCategory.index') }}">Categorieën</a>
+                                <a class="dropdown-item" href="">Producten</a>
+                            </div>
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav ml-auto">

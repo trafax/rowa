@@ -33,11 +33,11 @@
             </div>
             <div id="main-menu" class="float-right float-lg-none d-none d-lg-block">
                 <ul>
-                    <li><a href="">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     @foreach (\App\Models\Page::where(['parent_id' => '0'])->orderBy('sort')->get() as $menu)
                         <li>
-                            <a href="#">{!! $menu->title !!}</a>
-                            @if ($menu->children->count() > 0)
+                            <a href="{{ $menu->children->count() == 0 && $menu->webshop_category_id == 0 ? route('page', $menu->slug) : '#' }}">{!! $menu->title !!}</a>
+                            @if ($menu->children->count() > 0 || $menu->webshop_category_id > 0)
                             <div class="sub-menu">
                                 <div class="container d-flex">
                                     <div class="d-none d-lg-block sub-menu-title">
@@ -47,9 +47,15 @@
                                         @endif
                                     </div>
                                     <ul>
-                                        @foreach ($menu->children as $child_menu)
-                                            <li><a href="">{!! $child_menu->title !!}</a></li>
+                                        @if ($menu->webshop_category_id > 0)
+                                        @foreach (App\Models\WebshopCategory::where('parent_id', $menu->webshop_category_id)->orderBy('sort')->get() as $category)
+                                            <li><a href="{{ route('webshopCategory', $category->slug) }}">{!! $category->title !!}</a></li>
                                         @endforeach
+                                        @else
+                                            @foreach ($menu->children as $child_menu)
+                                                <li><a href="{{ route('page', $child_menu->slug) }}">{!! $child_menu->title !!}</a></li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

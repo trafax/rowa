@@ -14,7 +14,7 @@
                 </ol>
             </nav>
             <div class="ml-auto">
-                <button type="submit" class="btn btn-primary">Opslaan</button>
+                <button type="submit" class="btn btn-primary btn-sm">Opslaan</button>
             </div>
         </div>
     </div>
@@ -53,6 +53,15 @@
                         <div class="form-group">
                             <label>Menu afbeelding</label>
                             @include ('assets.admin.single', ['name' => 'navigation_image', 'value' => $obj->navigation_image])
+                        </div>
+                        <div class="form-group">
+                            <label>Toon sub-categorieën in menu</label>
+                            <select name="webshop_category_id" class="form-control">
+                                <option value="0">Geen</option>
+                                @foreach (App\Models\WebshopCategory::where('parent_id', 0)->orderBy('sort')->get() as $category)
+                                    <option {{ $category->id == $obj->webshop_category_id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

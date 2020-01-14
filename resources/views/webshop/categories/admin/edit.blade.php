@@ -1,15 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-<form action="{{ route('admin.page.store') }}" method="post">
+<form action="{{ route('admin.webshopCategory.update', $object) }}" method="post">
     @csrf
+    @method('PUT')
     <div class="container">
         <div class="d-flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.page.index') }}">Pagina's</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Pagina toevoegen</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.webshopCategory.index') }}">Categorieën</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Categorie wijzigen</li>
                 </ol>
             </nav>
             <div class="ml-auto">
@@ -29,32 +30,27 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label>Titel pagina</label>
-                            <input type="text" name="title" value="{{ old('title') }}" class="form-control" required>
+                            <label>Titel categorie</label>
+                            <input type="text" name="title" value="{{ old('title', $object->title) }}" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tekst</label>
+                            <textarea name="description" class="editor">{!! $object->description !!}</textarea>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label>Plaats in</label>
                             <select name="parent_id" class="form-control">
-                                <option value="0">Hoofdpagina</option>
-                                @foreach (App\Models\Page::where('parent_id', 0)->orderBy('sort')->get() as $page)
-                                    <option value="{{ $page->id }}">{{ $page->title }}</option>
+                                <option value="0">Hoofdcategorie</option>
+                                @foreach (App\Models\WebshopCategory::where('parent_id', 0)->where('id', '!=' , $object->id)->orderBy('sort')->get() as $category)
+                                    <option {{ $object->parent_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Menu afbeelding</label>
-                            @include ('assets.admin.single', ['name' => 'navigation_image', 'value' => ''])
-                        </div>
-                        <div class="form-group">
-                            <label>Toon sub-categorieën in menu</label>
-                            <select name="webshop_category_id" class="form-control">
-                                <option value="0">Geen</option>
-                                @foreach (App\Models\WebshopCategory::where('parent_id', 0)->orderBy('sort')->get() as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                @endforeach
-                            </select>
+                            <label>Afbeelding</label>
+                            @include ('assets.admin.single', ['name' => 'image', 'value' => $object->image])
                         </div>
                     </div>
                 </div>
