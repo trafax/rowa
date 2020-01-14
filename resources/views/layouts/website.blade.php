@@ -8,64 +8,61 @@
     <script src="{{ mix('js/website.js') }}"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/website.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+    <div id="header">
+        <div class="container">
+            <div class="d-lg-flex float-left float-lg-none w-100">
+                <div class="logo float-left">
+                    <a href="/"><img src="/img/logo.png"></a>
+                </div>
+                <div class="top-menu ml-auto d-none d-lg-flex">
+                    <div>
+                        info@rowa.nl <span>|</span> 0223 - 521 280 <span>|</span> <a href="">login</a> <span>|</span>
+                    </div>
+                    <form class="ml-2">
+                        <input type="text" name="search" placeholder="Zoek..." class="form-control">
+                    </form>
+                </div>
+                <div class="d-sm-block d-lg-none float-right float-lg-none menu-toggle">
+                    <a href="javascript:;" class="menu-toggle">TOGGLE</a>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <div id="main-menu" class="float-right float-lg-none d-none d-lg-block">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    @foreach (\App\Models\Page::where(['parent_id' => '0'])->orderBy('sort')->get() as $menu)
+                        <li>
+                            <a href="#">{!! $menu->title !!}</a>
+                            @if ($menu->children->count() > 0)
+                            <div class="sub-menu">
+                                <div class="container d-flex">
+                                    <div class="d-none d-lg-block sub-menu-title">
+                                        <h3>{!! $menu->title !!}</h3>
+                                        @if ($menu->navigation_image)
+                                            <img class="menu-image" src="{{ asset($menu->navigation_image) }}">
+                                        @endif
+                                    </div>
+                                    <ul>
+                                        @foreach ($menu->children as $child_menu)
+                                            <li><a href="">{!! $child_menu->title !!}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
     </div>
+
+    @yield('content')
+
+
 </body>
 </html>

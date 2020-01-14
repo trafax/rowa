@@ -11,10 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@homepage');
 
+Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/', 'PageController@index');
@@ -30,4 +29,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('asset/single_dropzone', 'AssetController@single_dropzone')->name('asset.single_dropzone');
 });
 
-Auth::routes();
+Route::get('/admin', '\App\Http\Controllers\Auth\LoginController@showLoginForm');

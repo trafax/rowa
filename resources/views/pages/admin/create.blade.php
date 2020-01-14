@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label>Plaats in</label>
                             <select name="parent_id" class="form-control">
-                                <option value="">Hoofdpagina</option>
+                                <option value="0">Hoofdpagina</option>
                                 @foreach (App\Models\Page::where('parent_id', 0)->orderBy('sort')->get() as $page)
                                     <option value="{{ $page->id }}">{{ $page->title }}</option>
                                 @endforeach

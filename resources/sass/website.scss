@@ -1,8 +1,138 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+$main_text_color: #2a363b;
+
+body {
+    font-family: 'dinlight', sans-serif;
+    color: $main_text_color;
+    overflow: hidden;
+}
+
+#header {
+    .container {
+        @media (min-width: 990px) {
+            width: 1240px;
+            max-width: 1240px;
+        }
+        .logo {
+            margin-top: 10px;
+            width: auto;
+            @media (max-width: 575px) {
+                img {
+                    width: 200px;
+                }
+            }
+        }
+        .top-menu {
+            padding-top: 15px;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            span {
+                margin: 0 3px;
+            }
+            a {
+                color: #2a363b;
+            }
+            input[type="text"] {
+                background-color: #d4d7d8;
+                height: 30px;
+                width: 125px;
+                font-size: 14px;
+            }
+        }
+    }
+    .menu-toggle {
+        margin-top: 50px;
+    }
+    #main-menu {
+        margin-top: 25px;
+        @media (max-width: 991px) {
+            width: 100%;
+            background-color: #009ee0;
+            padding: 10px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                list-style: none;
+                margin: 0 30px 0 0;
+                padding-bottom: 10px;
+                display: inline-block;
+                position: static;
+                @media (max-width: 991px) {
+                    display: block;
+                }
+                .sub-menu {
+                    display: none;
+                    @media (min-width: 991px) {
+                        background-color: #009ee0;
+                        border-top: #818998 solid 25px;
+                        min-height: 278px;
+                        min-width: 1240px;
+                        width: 100%;
+                        position: absolute;
+                        left: 0;
+                        margin-top: 10px;
+                        .sub-menu-title {
+                            min-width: 320px;
+                        }
+                    }
+                    .container {
+                        h3 {
+                            font-family: 'dinlight', sans-serif;
+                            font-size: 32px;
+                            color: #FFF;
+                            margin-top: 40px;
+                            padding: 0;
+                            text-transform: uppercase;
+                        }
+                        .menu-image {
+                            border: white solid 4px;
+                        }
+                        ul {
+                            margin-top: 10px;
+                            @media (min-width: 991px) {
+                                margin-left: 100px;
+                                margin-top: 40px;
+                                li {
+                                    min-width: 40%;
+                                    margin-bottom: 0;
+                                    padding-bottom: 0;
+                                    word-break: keep-all;
+                                }
+                            }
+                        }
+                    }
+                    a {
+                        color: #FFF;
+                    }
+                }
+                &:hover {
+                    .sub-menu {
+                        display: block;
+                    }
+                }
+            }
+        }
+        > ul > li > a {
+            text-transform: uppercase;
+            color: $main_text_color;
+            font-family: 'dinbold', 'sans-serif';
+            text-decoration: none;
+            padding-bottom: 5px;
+            &:hover {
+                color: #009ee0;
+                border-bottom: $main_text_color solid 1px;
+            }
+            @media (max-width: 991px) {
+                color: #FFF;
+                &:hover {
+                    color: $main_text_color;
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
