@@ -54,4 +54,17 @@ class AssetController extends Controller
             Asset::find($id)->update(['sort' => $index]);
         }
     }
+
+    public function edit(Asset $asset)
+    {
+        return view('assets.admin.edit')->with('asset', $asset);
+    }
+
+    public function update(Request $request, Asset $asset)
+    {
+        $asset->fill($request->all());
+        $asset->save();
+
+        return redirect()->back();
+    }
 }

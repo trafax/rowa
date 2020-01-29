@@ -2,6 +2,9 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+@import '../../node_modules/bxslider/dist/jquery.bxslider.min.css';
+@import '~@fancyapps/fancybox/dist/jquery.fancybox.min';
+
 @font-face {
     font-family: 'dinlight';
     src: url('/fonts/din-light-regular/din_light_regular-webfont.woff2') format('woff2'),

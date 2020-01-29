@@ -19,11 +19,16 @@ class WebshopCategory extends Model
 
     public function children()
     {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent_id', 'id')->orderBy('sort');
     }
 
     public function parent()
     {
         return $this->hasOne(self::class, 'id', 'parent_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\WebshopProduct', 'parent_id', 'id');
     }
 }

@@ -56,6 +56,24 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Hyperlink</label>
+                            <input type="text" name="hyperlink" value="{{ old('hyperlink') }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Toon in menu</label>
+                            <select name="show_in_menu" class="form-control">
+                                <option value="1">Ja</option>
+                                <option value="0">Nee</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Toon als blok op homepagina</label>
+                            <select name="show_on_home" class="form-control">
+                                <option value="0">Nee</option>
+                                <option value="1">Ja</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

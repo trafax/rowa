@@ -90380,12 +90380,40 @@ __webpack_require__(/*! tinymce/plugins/media */ "./node_modules/tinymce/plugins
 
 __webpack_require__(/*! tinymce/plugins/table */ "./node_modules/tinymce/plugins/table/index.js");
 
+function init() {
+  $('.sortable').sortable({
+    delay: 300,
+    update: function update(event, ui) {
+      var action = $(this).data('action');
+      var data = $(this).sortable('toArray');
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+          'items': data
+        },
+        url: action,
+        type: 'POST',
+        success: function success(response) {
+          if (response.reload) {
+            window.location.reload();
+          }
+        },
+        dataType: 'json'
+      });
+    }
+  });
+}
+
 $(function () {
+  init();
   $('.toast').toast('show');
   $('.table').checkboxes('range', true);
   $(".nav-tabs > a").on("shown.bs.tab", function (e) {
     var id = $(e.target).attr("href").substr(1);
     window.location.hash = id;
+    init();
   });
   var hash = window.location.hash;
   $('.nav-tabs a[href="' + hash + '"]').tab('show');
@@ -90423,29 +90451,6 @@ $(function () {
       $('.check').prop('checked', true);
     } else {
       $('.check').prop('checked', false);
-    }
-  });
-  $('.sortable').sortable({
-    delay: 300,
-    update: function update(event, ui) {
-      var action = $(this).data('action');
-      var data = $(this).sortable('toArray');
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: {
-          'items': data
-        },
-        url: action,
-        type: 'POST',
-        success: function success(response) {
-          if (response.reload) {
-            window.location.reload();
-          }
-        },
-        dataType: 'json'
-      });
     }
   });
   tinymce.init({

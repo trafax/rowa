@@ -45,7 +45,7 @@ class PageController extends Controller
 
     public function update(Request $request, Page $page)
     {
-        $request->request->set('slug', Str::slug($request->get('title')));
+        $request->request->set('slug', $request->get('slug') ? $request->get('slug') : Str::slug($request->get('title')));
         $page->fill($request->all());
         $page->save();
 

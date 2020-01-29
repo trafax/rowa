@@ -14,7 +14,7 @@
 <body>
 
     <div id="header">
-        <div class="container">
+        <div class="container main">
             <div class="d-lg-flex float-left float-lg-none w-100">
                 <div class="logo float-left">
                     <a href="/"><img src="/img/logo.png"></a>
@@ -33,10 +33,10 @@
             </div>
             <div id="main-menu" class="float-right float-lg-none d-none d-lg-block">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    @foreach (\App\Models\Page::where(['parent_id' => '0'])->orderBy('sort')->get() as $menu)
+                    @foreach (\App\Models\Page::where(['parent_id' => '0', 'show_in_menu' => 1])->orderBy('sort')->get() as $menu)
                         <li>
-                            <a href="{{ $menu->children->count() == 0 && $menu->webshop_category_id == 0 ? route('page', $menu->slug) : '#' }}">{!! $menu->title !!}</a>
+                            @php $link = $menu->hyperlink ? $menu->hyperlink : route('page', $menu->slug); @endphp
+                            <a href="{{ $menu->children->count() == 0 && $menu->webshop_category_id == 0 ? $link : '#' }}">{!! $menu->title !!}</a>
                             @if ($menu->children->count() > 0 || $menu->webshop_category_id > 0)
                             <div class="sub-menu">
                                 <div class="container d-flex">
@@ -53,7 +53,8 @@
                                         @endforeach
                                         @else
                                             @foreach ($menu->children as $child_menu)
-                                                <li><a href="{{ route('page', $child_menu->slug) }}">{!! $child_menu->title !!}</a></li>
+                                                @php $link = $child_menu->hyperlink ? $child_menu->hyperlink : route('page', $child_menu->slug); @endphp
+                                                <li><a href="{{ $link }}">{!! $child_menu->title !!}</a></li>
                                             @endforeach
                                         @endif
                                     </ul>
@@ -69,6 +70,55 @@
 
     @yield('content')
 
+    <div class="footer">
+        <div class="container main">
+            <div class="row">
+                <div class="col-md-3 text-center text-md-left mb-4">
+                    <h3>Overzicht</h3>
+                    <a href="#">Over ons</a><br>
+                    <a href="#">Drukwerk</a><br>
+                    <a href="#">Sign & Belettering</a><br>
+                    <a href="#">Webdesign</a><br>
+                    <a href="#">Textiel</a><br>
+                    <a href="#">Specials</a><br>
+                    <a href="#">Niedorper Weekblad</a><br>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="col-md-3 text-center text-md-left mb-4">
+                    <h3>Home</h3>
+                    <p>Rowa Druk & Media<br>
+                        Molenvaart 357a<br>
+                        1764 AR Breezand<br>
+                        T 0223 52 1280<br>
+                        E info@rowa.nl<br>
+                        Openingstijden:<br>
+                        maandag t/m vrijdag<br>
+                        8.00-17.15 uur</p>
+                </div>
+                <div class="col-md-3 text-center text-md-left mb-4">
+                    <h3>Informatie</h3>
+                    <a href="#">Algemene Voorwaarden</a><br>
+                    <a href="#">FAQ</a><br>
+                    <a href="#">Levering</a><br>
+                    <a href="#">Uw voorraad</a><br>
+                    <a href="#">Account instellingen</a><br>
+                    <a href="#">Strippenkaart</a>
+                </div>
+                <div class="col-md-3 text-center text-md-left mb-4">
+                    <h3>Extra's</h3>
+                    <p>
+                        <a href="#"><img src="/img/bollenkaartjes.png"></a><br>
+                        <a href="#"><img src="/img/decolight.png"></a><br>
+                        <a href="#"><img src="/img/spanframeverhuur.png"></a><br>
+                        <a href="#"><img src="/img/niedorper.png"></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright text-center">
+        &copy; {{ date('Y') }} Rowa | <a href="https://digital4u.nl/" target="_blank">Digital4u</a>
+    </div>
 
 </body>
 </html>

@@ -17,7 +17,37 @@ require('tinymce/plugins/code');
 require('tinymce/plugins/media');
 require('tinymce/plugins/table');
 
+function init()
+{
+    $('.sortable').sortable({
+        delay: 300,
+        update: function( event, ui ) {
+
+           var action = $(this).data('action');
+           var data = $(this).sortable('toArray');
+
+           $.ajax({
+              headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              data: {'items' : data},
+              url: action,
+              type: 'POST',
+              success: function(response)
+              {
+                  if (response.reload) {
+                    window.location.reload();
+                  }
+              },
+              dataType: 'json'
+           });
+        }
+     });
+}
+
 $(function(){
+
+    init();
 
     $('.toast').toast('show');
 
@@ -26,6 +56,7 @@ $(function(){
     $(".nav-tabs > a").on("shown.bs.tab", function(e) {
         var id = $(e.target).attr("href").substr(1);
         window.location.hash = id;
+        init();
     });
 
     var hash = window.location.hash;
@@ -71,31 +102,6 @@ $(function(){
             $('.check').prop('checked', false);
         }
     });
-
-    $('.sortable').sortable({
-        delay: 300,
-        update: function( event, ui ) {
-
-           var action = $(this).data('action');
-           var data = $(this).sortable('toArray');
-
-           $.ajax({
-              headers: {
-                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
-              data: {'items' : data},
-              url: action,
-              type: 'POST',
-              success: function(response)
-              {
-                  if (response.reload) {
-                    window.location.reload();
-                  }
-              },
-              dataType: 'json'
-           });
-        }
-     });
 
      tinymce.init({
         selector: ".editor",

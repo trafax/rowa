@@ -24,7 +24,7 @@
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#seo" role="tab" aria-controls="nav-home" aria-selected="true">Zoekmachine</a>
-                {{-- <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#images" role="tab" aria-controls="nav-home" aria-selected="true">Afbeeldingen</a> --}}
+                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#slider" role="tab" aria-controls="nav-home" aria-selected="true">Slider</a>
             </div>
         </nav>
         <div class="tab-content py-4" id="nav-tabContent">
@@ -63,6 +63,24 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Hyperlink</label>
+                            <input type="text" name="hyperlink" value="{{ old('hyperlink', $obj->hyperlink) }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Toon in menu</label>
+                            <select name="show_in_menu" class="form-control">
+                                <option value="1">Ja</option>
+                                <option value="0" {{ $obj->show_in_menu == 0 ? 'selected' : '' }}>Nee</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Toon als blok op homepagina</label>
+                            <select name="show_on_home" class="form-control">
+                                <option value="0">Nee</option>
+                                <option value="1" {{ $obj->show_on_home == 1 ? 'selected' : '' }}>Ja</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,9 +102,9 @@
                     <textarea name="seo[description]" class="form-control">{{ old('seo[description]', $obj->seo['description']) }}</textarea>
                 </div>
             </div>
-            {{-- <div class="tab-pane fade show" id="images" role="tabpanel" aria-labelledby="nav-home-tab">
-                @include ('assets.admin.dropzone_multiple', ['parent_id' => $obj->id, 'reload_url' => route('admin.page.edit', $obj), 'assets' => $obj->assets, 'anchor' => 'images'])
-            </div> --}}
+            <div class="tab-pane fade show" id="slider" role="tabpanel" aria-labelledby="nav-home-tab">
+                @include ('assets.admin.dropzone_multiple', ['parent_id' => $obj->id, 'file_data' => true, 'reload_url' => route('admin.page.edit', $obj), 'assets' => $obj->assets, 'anchor' => 'images'])
+            </div>
         </div>
     </div>
 </form>

@@ -1,22 +1,23 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+//@import '~lightslider/dist/css/lightslider.min.css';
 
 $main_text_color: #2a363b;
+$blue_color: #029fe0;
+$blue_dark_color: #00447b;
 
 body {
     font-family: 'dinlight', sans-serif;
     color: $main_text_color;
-    overflow: hidden;
     font-size: 15px;
 }
 
 #header {
     box-shadow: 0 4px 4px -2px #CCC;
+    @media (max-width: 991px) {
+        height: 156px;
+    }
     .container {
-        @media (min-width: 990px) {
-            width: 1240px;
-            max-width: 1240px;
-        }
         .logo {
             margin-top: 10px;
             width: auto;
@@ -160,6 +161,130 @@ body {
     }
 }
 
+.home-slider {
+    .bx-wrapper {
+        margin-bottom: 0;
+    }
+    .slide {
+        height: 980px;
+        position: relative;
+        .caption {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            h3 {
+                font-size: 72px;
+                color: #FFF;
+                font-family: 'dinbold', 'sans-serif';
+            }
+            h4 {
+                font-size: 36px;
+                color: #FFF;
+            }
+            .button {
+                background: $blue_color;
+                display: block;
+                color: #FFF;
+                line-height: 120px;
+                padding: 0 60px;
+                font-family: 'dinbold', 'sans-serif';
+                font-size: 48px;
+                margin-top: 40px;
+                text-decoration: none;
+                &:hover {
+                    background: $blue_dark_color;
+                }
+            }
+        }
+    }
+    .bx-wrapper {
+        box-shadow: none;
+        border: 0;
+    }
+    .bx-pager {
+        bottom: 30px;
+    }
+    .bx-next {
+        background-image: url('/img/arrow-right.png');
+        background-position: top left;
+        background-size: cover;
+        right: 150px;
+        width: 90px !important;
+        height: 90px !important;
+        &:hover, &:focus {
+            background-position: top;
+        }
+    }
+    .bx-prev {
+        background-image: url('/img/arrow-left.png');
+        background-position: top left;
+        background-size: cover;
+        left: 150px;
+        width: 90px !important;
+        height: 90px !important;
+        &:hover {
+            background-position: top;
+        }
+    }
+}
+
+.homeblocks {
+    > .col-md-4 {
+        line-height: 550px;
+        text-align: center;
+        a {
+            font-size: 48px;
+            @media (max-width: 1540px) {
+                font-size: 28px;
+            }
+            color: #FFF;
+            text-transform: uppercase;
+            font-family: 'dinbold', 'sans-serif';
+            text-decoration: none;
+        }
+        position: relative;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        background-size: cover;
+    }
+    > .col-md-4:nth-child(odd) {
+        background-color: #12a1de;
+        -webkit-transition: background-color 0.2s ease-out;
+        -moz-transition: background-color 0.2s ease-out;
+        -o-transition: background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
+        &:hover {
+            background-color: rgba(#12a1de, 0.9);
+            -webkit-transition: background-color 0.2s ease-in;
+            -moz-transition: background-color 0.2s ease-in;
+            -o-transition: background-color 0.2s ease-in;
+            transition: background-color 0.2s ease-in;
+        }
+    }
+    > .col-md-4:nth-child(even) {
+        background-color: #384247;
+        -webkit-transition: background-color 0.2s ease-out;
+        -moz-transition: background-color 0.2s ease-out;
+        -o-transition: background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
+        &:hover {
+            background-color: rgba(#384247, 0.9);
+            -webkit-transition: background-color 0.2s ease-in;
+            -moz-transition: background-color 0.2s ease-in;
+            -o-transition: background-color 0.2s ease-in;
+            transition: background-color 0.2s ease-in;
+        }
+    }
+}
+
 h2 {
     &.category {
         font-family: 'dinbold', 'sans-serif';
@@ -171,5 +296,166 @@ h2 {
 .category-container {
     .description {
         font-family: 'dinbold', 'sans-serif';
+    }
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 900px;
+    .product {
+        flex: 0 0 30.88%;
+        margin-right: 33px;
+        margin-bottom: 45px;
+        .image {
+            width: 100%;
+            height: 390px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 25px;
+            position: relative;
+            .overlay {
+                opacity: 0;
+                a {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: #FFF;
+                    padding: 10px 40px;
+                    width: 80%;
+                    text-align: center;
+                    color: $blue_color;
+                    font-family: 'dinbold', 'sans-serif';
+                    text-decoration: none;
+                }
+            }
+            &:hover {
+                .overlay {
+                    background-color: rgba(2,159,224,0.5);
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 1;
+                    -webkit-transition: all 0.2s ease-in-out;
+                    -moz-transition: all 0.2s ease-in-out;
+                    -o-transition: all 0.2s ease-in-out;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
+        }
+        .title {
+            font-family: 'dinbold', 'sans-serif';
+            font-size: 17px;
+            text-align: center;
+        }
+        .price {
+            font-family: 'dinbold', 'sans-serif';
+            font-size: 23px;
+            text-align: center;
+        }
+        @media (min-width: 990px) {
+            &:nth-child(3n+3) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.product-container {
+    .bx-pager {
+        img {
+            width: 100%;
+        }
+    }
+    .bx-wrapper {
+        box-shadow: none;
+        border: 0;
+    }
+    .main-image {
+        height: 600px;
+        background-size: cover;
+        background-position: top;
+    }
+    .thumb-image {
+        width: 100%;
+        height: 80px;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 24px;
+    }
+    .thumb-image-extra {
+        width: 100%;
+        height: 215px;
+    }
+    .main-image {
+        width: 100%;
+    }
+    .title {
+        font-family: 'dinbold', 'sans-serif';
+        font-size: 30px;
+    }
+    .price {
+        font-family: 'dinbold', 'sans-serif';
+        font-size: 30px;
+    }
+    .sku {
+        display: block;
+        font-family: 'dinbold', 'sans-serif';
+    }
+    .btn-submit {
+        color: #FFF;
+        background-color: $blue_color;
+        border-radius: 0;
+        width: 100%;
+        padding: 25px 0;
+        font-family: 'dinbold', 'sans-serif';
+        font-size: 23px;
+        &:hover {
+            background-color: $blue_dark_color;
+        }
+    }
+}
+
+.footer {
+    background-image: url('/img/footer.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 600px;
+    > .container {
+        padding-top: 40px;
+        @media (min-width: 769px) {
+            padding-top: 200px;
+        }
+    }
+    h3 {
+        font-family: 'dinlight', sans-serif;
+        font-weight: 100;
+        font-size: 36px;
+        color: #FFF;
+    }
+    a, p {
+        color: #FFF;
+        font-family: 'dinbold', 'sans-serif';
+    }
+    a {
+        img {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.copyright {
+    line-height: 75px;
+    background-color: #010509;
+    color: white;
+    font-family: 'Roboto', 'sans-serif';
+    border-top: white solid 2px;
+    a {
+        color: white;
     }
 }

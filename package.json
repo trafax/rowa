@@ -24,9 +24,12 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fancyapps/fancybox": "^3.5.7",
+        "bxslider": "^4.2.14",
         "checkboxes.js": "^1.2.2",
         "dropzone": "^5.5.1",
         "jquery-ui": "^1.12.1",
+        "lightslider": "^1.1.6",
         "tinymce": "^5.1.5"
     }
 }

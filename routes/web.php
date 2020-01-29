@@ -27,13 +27,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('asset/{asset}/delete', 'AssetController@delete')->name('asset.delete');
     Route::post('asset/sort', 'AssetController@sort')->name('asset.sort');
     Route::post('asset/single_dropzone', 'AssetController@single_dropzone')->name('asset.single_dropzone');
+    Route::post('asset/edit/{asset}', 'AssetController@edit')->name('asset.edit');
+    Route::put('asset/{asset}/update', 'AssetController@update')->name('asset.update');
 
     Route::resource('webshopCategory', 'WebshopCategoryController');
     Route::post('webshopCategory/delete', 'WebshopCategoryController@delete_selected')->name('webshopCategory.delete_selected');
     Route::post('webshopCategory/sort', 'WebshopCategoryController@sort')->name('webshopCategory.sort');
+
+    Route::resource('webshopProduct', 'webshopProductController');
+    Route::post('webshopProduct/delete', 'webshopProductController@delete_selected')->name('webshopProduct.delete_selected');
+    Route::post('webshopProduct/sort', 'webshopProductController@sort')->name('webshopProduct.sort');
 });
 
 Route::get('/admin', '\App\Http\Controllers\Auth\LoginController@showLoginForm');
 
 Route::any('{slug?}', 'PageController@index')->name('page')->where('slug', '[a-z-]{3,}');
-Route::any('webshop/category/{slug?}', 'WebshopCategoryController@index')->name('webshopCategory')->where('slug', '[a-z-]{3,}');
+Route::any('webshop/category/{slug?}', 'WebshopCategoryController@index')->name('webshopCategory');
+Route::any('webshop/product/{slug?}', 'WebshopProductController@index')->name('webshopProduct');
