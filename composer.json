@@ -41,7 +41,8 @@
             "database/factories"
         ],
         "files": [
-            "app/Helpers/Prices.php"
+            "app/Helpers/Prices.php",
+            "app/Libraries/Cart.php"
         ]
     },
     "autoload-dev": {

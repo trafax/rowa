@@ -29,6 +29,8 @@ class WebshopProductController extends Controller
         $webshopProduct->fill($request->all());
         $webshopProduct->save();
 
+        self::attach_filters($webshopProduct, $request);
+
         return redirect()->route('admin.webshopProduct.index')->with('message', 'Product succesvol aangemaakt.');
     }
 
@@ -43,7 +45,38 @@ class WebshopProductController extends Controller
         $webshopProduct->fill($request->all());
         $webshopProduct->save();
 
+        self::attach_filters($webshopProduct, $request);
+
         return redirect()->route('admin.webshopProduct.index')->with('message', 'Product succesvol gewijzigd.');
+    }
+
+    public function attach_filters($webshopProduct, $request)
+    {
+        $webshopProduct->filters()->detach();
+
+        foreach ($request->get('variation') as $filter_id => $filter)
+        {
+            $filterRulesArr = explode("\r\n", $filter);
+            foreach ($filterRulesArr as $key => $filterRule)
+            {
+                list($value, $fixed_price, $added_price) = array_pad(explode(',', $filterRule), 3, 0);
+
+                if (! $value) continue;
+
+                $value = trim($value, ' ');
+                $fixed_price = number_format($fixed_price);
+                $added_price = number_format($added_price);
+
+                $webshopProduct->filters()->attach($filter_id, [
+                    'id' => Str::uuid(),
+                    'sort' => $key,
+                    'value' => $value,
+                    'slug' => Str::slug($value),
+                    'fixed_price' => $fixed_price,
+                    'added_price' => $added_price
+                ]);
+            }
+        }
     }
 
     public function delete_selected(Request $request)

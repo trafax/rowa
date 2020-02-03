@@ -24,4 +24,5 @@ return array(
     'b6ec61354e97f32c0ae683041c78392a' => $vendorDir . '/scrivo/highlight.php/HighlightUtilities/functions.php',
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     '33aa973acfed50566f0dd9914fb4e236' => $baseDir . '/app/Helpers/Prices.php',
+    'b4cde6ae15a4c97913b8591ffc8f4235' => $baseDir . '/app/Libraries/Cart.php',
 );

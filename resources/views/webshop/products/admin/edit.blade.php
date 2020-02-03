@@ -23,7 +23,8 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#images" role="tab" aria-controls="nav-home" aria-selected="true">Afbeeldingen</a>
+                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#filters" role="tab" aria-controls="nav-home" aria-selected="true">Filters</a>
+                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#slides" role="tab" aria-controls="nav-home" aria-selected="true">Afbeeldingen</a>
             </div>
         </nav>
         <div class="tab-content py-4" id="nav-tabContent">
@@ -71,7 +72,37 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade show" id="images" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade show" id="filters" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                <p>
+                    Opties kunnen op onderstaande manier toegoevoegd worden per variatie. Iedere regel is een nieuwe optie.<br>
+                    <i><strong>naam, vaste prijs, meerprijs</strong></i>
+                </p>
+
+                <div class="card-group">
+
+                    @foreach ($object->filters() as $filter)
+                        {{-- {{ dump($filter) }} --}}
+                    @endforeach
+
+                    @foreach (App\Models\WebshopFilter::orderBy('sort')->get() as $filter)
+                        <div class="card">
+                            <div class="card-header">{{ $filter->title }}</div>
+                            <div class="card-body">
+                                @php
+                                    $filter_content = '';
+                                    foreach ($object->filters()->where('webshop_filter_id', $filter->id)->get() as $row)
+                                    {
+                                        $filter_content .= $row->pivot->value . ', ' . $row->pivot->fixed_price . ', ' . $row->pivot->added_price . "\r\n";
+                                    }
+                                @endphp
+                                <textarea name="variation[{{ $filter->id }}]" class="form-control" rows="5" placeholder="naam, vaste prijs, meerprijs">{{ $filter_content }}</textarea>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="tab-pane fade show" id="slides" role="tabpanel" aria-labelledby="nav-home-tab">
                 @include ('assets.admin.dropzone_multiple', ['parent_id' => $object->id, 'reload_url' => route('admin.webshopProduct.edit', $object), 'assets' => $object->assets, 'anchor' => 'images'])
             </div>
         </div>

@@ -52,6 +52,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.webshopCategory.index') }}">Categorieën</a>
                                 <a class="dropdown-item" href="{{ route('admin.webshopProduct.index') }}">Producten</a>
+                                <a class="dropdown-item" href="{{ route('admin.webshopFilter.index') }}">Filters</a>
                             </div>
                         </li>
                     </ul>

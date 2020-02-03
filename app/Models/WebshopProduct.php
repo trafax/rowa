@@ -26,4 +26,9 @@ class WebshopProduct extends Model
     {
         return $this->hasMany('App\Models\Asset', 'parent_id', 'id')->orderBy('sort');
     }
+
+    public function filters()
+    {
+        return $this->belongsToMany('App\Models\WebshopFilter')->orderBy('fixed_price')->withPivot('id', 'sort', 'slug', 'value', 'fixed_price', 'added_price')->orderBy('pivot_sort');
+    }
 }

@@ -11,8 +11,28 @@ class WebshopProductController extends Controller
     {
         $webshopProduct = WebshopProduct::where('slug', $slug)->firstOrFail();
 
+        $filters = function() use ($webshopProduct) {
+
+            $filterArr = [];
+
+            foreach ($webshopProduct->filters as $filter)
+            {
+                if ($filter->selectable == 1)
+                {
+                    $filterArr[$filter->slug][] = [
+                        'title' => $filter->title,
+                        'slug' => $filter->pivot->slug,
+                        'value' => $filter->pivot->value
+                    ];
+                }
+            }
+
+            return $filterArr;
+        };
+
         return view('webshop.products.index')->with([
-            'webshopProduct' => $webshopProduct
+            'webshopProduct' => $webshopProduct,
+            'filters' => $filters()
         ]);
     }
 }

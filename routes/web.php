@@ -37,10 +37,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('webshopProduct', 'webshopProductController');
     Route::post('webshopProduct/delete', 'webshopProductController@delete_selected')->name('webshopProduct.delete_selected');
     Route::post('webshopProduct/sort', 'webshopProductController@sort')->name('webshopProduct.sort');
+
+    Route::resource('webshopFilter', 'webshopFilterController');
+    Route::post('webshopFilter/delete', 'webshopFilterController@delete_selected')->name('webshopFilter.delete_selected');
+    Route::post('webshopFilter/sort', 'webshopFilterController@sort')->name('webshopFilter.sort');
 });
 
 Route::get('/admin', '\App\Http\Controllers\Auth\LoginController@showLoginForm');
 
 Route::any('{slug?}', 'PageController@index')->name('page')->where('slug', '[a-z-]{3,}');
-Route::any('webshop/category/{slug?}', 'WebshopCategoryController@index')->name('webshopCategory');
+Route::any('webshop/category/{slug?}/{any?}', 'WebshopCategoryController@index')->name('webshopCategory')->where('any', '.*');
 Route::any('webshop/product/{slug?}', 'WebshopProductController@index')->name('webshopProduct');
+Route::post('webshop/set_filter/{slug}', 'WebshopCategoryController@set_filter')->name('webshop_set_filter');
+Route::post('webshop/cart/add/{webshopProduct}', 'WebshopCartController@add')->name('webshopCart.add');

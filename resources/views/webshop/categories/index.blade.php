@@ -20,15 +20,36 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <h2 class="category">FILTER</h2>
-                <hr>
+            <div class="col filters">
+                @if ($filters)
+                    <h2 class="category">FILTER</h2>
+                    <hr>
+                    <form method="post" action="{{ route('webshop_set_filter', $webshopCategory->slug) }}">
+                        @csrf
+                        @foreach ($filters as $filter => $filterArr)
+                            <div class="form-group">
+                                <label class="font-weight-bold">{!! $filterArr->title !!}</label>
+                                @foreach ($filterArr->values as $filterObj)
+                                    @php $checked = isset($active_filters[$filterArr->slug]) && in_array($filterObj->slug, explode(',', $active_filters[$filterArr->slug])) ? 'checked' : '' @endphp
+                                    <label class="d-block"><input type="checkbox" {{ $checked }} name="filters[{{ $filterArr->slug }}][]" value="{{ $filterObj->slug }}"> {!! ucfirst($filterObj->value) !!}</label>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    </form>
+                    <script>
+                        $(function(){
+                            $('.filters input[type="checkbox"]').change(function(){
+                                $('.filters form').submit();
+                            });
+                        });
+                    </script>
+                @endif
             </div>
             <div class="col-md-9 category-container">
                 <h2 class="category">{{ $webshopCategory->title }}</h2>
                 <div class="description">{!! $webshopCategory->description !!}</div>
                 <div class="products-container">
-                    @foreach ($webshopCategory->products as $webshopProduct)
+                    @foreach ($webshopProducts as $webshopProduct)
                         <div class="product">
                             <div class="image" style="background-image: url('{{ asset('assets/' . $webshopProduct->assets()->first()->file) }}')">
                                 <div class="overlay">
