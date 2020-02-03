@@ -49,4 +49,6 @@ Route::any('{slug?}', 'PageController@index')->name('page')->where('slug', '[a-z
 Route::any('webshop/category/{slug?}/{any?}', 'WebshopCategoryController@index')->name('webshopCategory')->where('any', '.*');
 Route::any('webshop/product/{slug?}', 'WebshopProductController@index')->name('webshopProduct');
 Route::post('webshop/set_filter/{slug}', 'WebshopCategoryController@set_filter')->name('webshop_set_filter');
+Route::get('webshop/cart', 'WebshopCartController@index')->name('webshopCart.index');
+Route::get('webshop/cart/truncate', 'WebshopCartController@truncate')->name('webshopCart.truncate');
 Route::post('webshop/cart/add/{webshopProduct}', 'WebshopCartController@add')->name('webshopCart.add');

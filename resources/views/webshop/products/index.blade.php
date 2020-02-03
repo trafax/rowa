@@ -45,6 +45,13 @@
                     <a href="{{ route('webshopCategory', $webshopProduct->category->slug) }}" class="d-block mb-4 text-dark font-weight-bold">Bekijk alle {{ $webshopProduct->category->title }}</a>
                 </div>
                 <div class="col">
+
+                    @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {!! session('message') !!}
+                    </div>
+                    @endif
+
                     <div class="d-flex">
                         <span class="title">{{ $webshopProduct->title }}</span>
                         <span class="price ml-auto">&euro; {{ price($webshopProduct->price) }}</span>
@@ -56,7 +63,7 @@
                                 <label class="font-weight-bold">{!! $filterArr[0]['title'] !!}</label>
                                 <select class="form-control" name="filters[{{ $filter }}]">
                                     @foreach ($filterArr as $filterObj)
-                                        <option>{!! $filterObj['value'] !!}</option>
+                                        <option value="{{ $filterObj['slug'] }}">{!! $filterObj['value'] !!}</option>
                                     @endforeach
                                 </select>
                             </div>

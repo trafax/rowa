@@ -12,7 +12,6 @@
     <link href="{{ mix('css/website.css') }}" rel="stylesheet">
 </head>
 <body>
-
     <div id="header">
         <div class="container main">
             <div class="d-lg-flex float-left float-lg-none w-100">
