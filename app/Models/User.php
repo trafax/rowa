@@ -12,13 +12,15 @@ class User extends Authenticatable
     use Notifiable;
     use Uuids;
 
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'company_name', 'firstname', 'preposition', 'lastname', 'street', 'house_number', 'zipcode', 'city', 'telephone', 'email', 'password', 'role'
     ];
 
     /**

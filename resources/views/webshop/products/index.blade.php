@@ -47,9 +47,9 @@
                 <div class="col">
 
                     @if (session('message'))
-                    <div class="alert alert-success" role="alert">
-                        {!! session('message') !!}
-                    </div>
+                        <div class="alert alert-success" role="alert">
+                            {!! session('message') !!}
+                        </div>
                     @endif
 
                     <div class="d-flex">

@@ -41,8 +41,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('webshopFilter', 'webshopFilterController');
     Route::post('webshopFilter/delete', 'webshopFilterController@delete_selected')->name('webshopFilter.delete_selected');
     Route::post('webshopFilter/sort', 'webshopFilterController@sort')->name('webshopFilter.sort');
+
+    Route::get('webshopOrder', 'webshopOrderController@index')->name('webshopOrder.index');
+    Route::post('webshopOrder/delete', 'webshopOrderController@delete_selected')->name('webshopOrder.delete_selected');
+    Route::get('webshopOrder/{webshopOrder}/show', 'webshopOrderController@show')->name('webshopOrder.show');
+
+    Route::resource('emailTemplates', 'EmailTemplateController');
+    Route::post('emailTemplates/delete', 'EmailTemplateController@delete_selected')->name('emailTemplates.delete_selected');
 });
 
+Route::get('logout', 'Auth\LoginController@logout');
 Route::get('/admin', '\App\Http\Controllers\Auth\LoginController@showLoginForm');
 
 Route::any('{slug?}', 'PageController@index')->name('page')->where('slug', '[a-z-]{3,}');
@@ -50,5 +58,17 @@ Route::any('webshop/category/{slug?}/{any?}', 'WebshopCategoryController@index')
 Route::any('webshop/product/{slug?}', 'WebshopProductController@index')->name('webshopProduct');
 Route::post('webshop/set_filter/{slug}', 'WebshopCategoryController@set_filter')->name('webshop_set_filter');
 Route::get('webshop/cart', 'WebshopCartController@index')->name('webshopCart.index');
+Route::post('webshop/cart/update', 'WebshopCartController@update')->name('webshopCart.update');
 Route::get('webshop/cart/truncate', 'WebshopCartController@truncate')->name('webshopCart.truncate');
 Route::post('webshop/cart/add/{webshopProduct}', 'WebshopCartController@add')->name('webshopCart.add');
+
+Route::get('webshop/checkout', 'CheckoutController@index')->name('checkout');
+
+Route::get('webuser/profile', 'UserController@profile')->name('user.profile')->middleware('auth');
+Route::put('webuser/update', 'UserController@update')->name('user.update')->middleware('auth');
+Route::get('webusers/orders', 'UserController@orders')->name('user.orders')->middleware('auth');
+Route::get('webusers/order/{webshopOrder}', 'UserController@order_view')->name('user.order.view')->middleware('auth');
+
+Route::post('order/create', 'OrderController@create')->name('order.create');
+Route::get('order/checkout', 'CheckoutController@doPayment')->name('doPayment');
+Route::get('order/done', 'OrderController@done')->name('order.done');

@@ -20,7 +20,20 @@
                 </div>
                 <div class="top-menu ml-auto d-none d-lg-flex">
                     <div>
-                        info@rowa.nl <span>|</span> 0223 - 521 280 <span>|</span> <a href="">login</a> <span>|</span>
+                        info@rowa.nl <span>|</span> 0223 - 521 280 <span>|</span>
+                        @if (Auth::user())
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Mijn gegevens
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{{ route('user.profile') }}">Mijn gegevens</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">Uitloggen</a>
+                                </div>
+                            </div>
+                        @else
+                            <a href="{{ route('checkout') }}">inloggen</a> <span>|</span>
+                        @endif
                     </div>
                     <form class="ml-2">
                         <input type="text" name="search" placeholder="Zoek..." class="form-control">
@@ -62,6 +75,9 @@
                             @endif
                         </li>
                     @endforeach
+                    <li class="float-right m-0">
+                        <a href="{{ route('webshopCart.index') }}"><img src="{{ asset('img/cart.png') }}" class="cart-image"></a>
+                    </li>
                 </ul>
             </div>
         </div>

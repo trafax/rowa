@@ -53,6 +53,15 @@
                                 <a class="dropdown-item" href="{{ route('admin.webshopCategory.index') }}">Categorieën</a>
                                 <a class="dropdown-item" href="{{ route('admin.webshopProduct.index') }}">Producten</a>
                                 <a class="dropdown-item" href="{{ route('admin.webshopFilter.index') }}">Filters</a>
+                                <a class="dropdown-item" href="{{ route('admin.webshopOrder.index') }}">Bestellingen</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Instellingen
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.emailTemplates.index') }}">E-mail templates</a>
                             </div>
                         </li>
                     </ul>
