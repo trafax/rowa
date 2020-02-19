@@ -17,6 +17,8 @@ class OrderController extends Controller
             'privacy' => 'required'
         ]);
 
+        session()->remove('order');
+
         // Nieuwe order aanmaken als deze nog niet opgeslagen is
         if (! session()->get('order'))
         {
@@ -24,7 +26,7 @@ class OrderController extends Controller
             $order->user_id = Auth::user()->id;
 
             $WebshopOrderNr = WebshopOrder::orderByRaw('CAST(order_nr as UNSIGNED) DESC')->first();
-            $order->order_n = ($WebshopOrderNr->order_nr ?? 0) + 1;
+            $order->order_nr = ($WebshopOrderNr->order_nr ?? 0) + 1;
 
             // Factuur adres
             $order->invoice_address = [
@@ -33,6 +35,9 @@ class OrderController extends Controller
                 'zipcode' => Auth::user()->zipcode,
                 'city' => Auth::user()->city,
             ];
+
+            // Betaalmethode
+            $order->paymentMethod = $request->get('payment_method');
 
             // Sla aflever gegevens op
             if ($request->get('other_delivery') == 1)
@@ -89,8 +94,14 @@ class OrderController extends Controller
         return redirect()->route('doPayment');
     }
 
-    public function done()
+    public function done($order_id)
     {
-        return view('webshop.orders.done');
+        $order = WebshopOrder::find($order_id);
+
+        if ($order->status == 'paid') {
+            return view('webshop.orders.done');
+        } else {
+            return view('webshop.orders.error');
+        }
     }
 }

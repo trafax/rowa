@@ -69,6 +69,10 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="form-group">
+                        <label>Aantal</label>
+                        <input type="number" name="qty" value="1" class="form-control col-md-3">
+                    </div>
                     <div>
                         <button class="border-0 btn-submit">Bestel nu!</button>
                     </div>

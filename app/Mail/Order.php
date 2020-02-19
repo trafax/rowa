@@ -46,6 +46,6 @@ class Order extends Mailable
 
         $this->html = $emailTemplate->content;
 
-        return $this->from('noreply@rowa.nl')->view('emailtemplates.email')->with('emailTemplate', $emailTemplate);
+        return $this->from('noreply@rowa.nl')->subject('Bestelling '. $order->order_nr)->view('emailtemplates.email')->with('emailTemplate', $emailTemplate);
     }
 }

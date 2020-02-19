@@ -4,7 +4,7 @@
     <div class="main container">
         <div class="top border-bottom">
             <div class="breadcrumbs">
-                <a href="/">Home</a> / Bestelling asfgerond
+                <a href="/">Home</a> / Bestelling afgerond
             </div>
         </div>
 

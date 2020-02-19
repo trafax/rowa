@@ -29,18 +29,18 @@
             </table>
         </td>
         <td width="50%">
-            @if ($order->user->other_delivery == 1)
+            @if ($order->delivery_address['street'])
                 <table width="100%">
                     <tr>
                         <td colspan="2"><h3>Afleveradres</h3></td>
                     </tr>
                     <tr>
                         <td><strong>Adres:</strong></td>
-                        <td>{{ $order->user->delivery_street }} {{ $order->user->delivery_house_number }}</td>
+                        <td>{{ $order->delivery_address['street'] }} {{ $order->delivery_address['house_number'] }}</td>
                     </tr>
                     <tr>
                         <td><strong>Postcode + woonplaats:</strong></td>
-                        <td>{{ $order->user->delivery_zipcode }} {{ $order->user->delivery_city }}</td>
+                        <td>{{ $order->delivery_address['zipcode'] }} {{ $order->delivery_address['city'] }}</td>
                     </tr>
                 </table>
             @endif

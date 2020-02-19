@@ -37,6 +37,7 @@
                 <th scope="col">Naam</th>
                 <th scope="col">Prijs</th>
                 <th scope="col">Status</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +48,9 @@
                     <td>{{ $order->user->firstname }} {{ $order->user->preposition }} {{ $order->user->lastname }}</td>
                     <td>&euro; {{ price($order->price_total) }}</td>
                     <td>{{ $order->status }}</td>
+                    <td>
+                        <a href="{{ route('admin.webshopOrder.download_pdf', $order) }}">PDF</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->primary('id');
             $table->uuid('user_id');
             $table->string('order_nr');
+            $table->string('paymentMethod')->nullable();
             $table->string('status')->default('pending');
             $table->decimal('price_sub_total')->default(0);
             $table->decimal('price_shipping')->default(0);

@@ -45,9 +45,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('webshopOrder', 'webshopOrderController@index')->name('webshopOrder.index');
     Route::post('webshopOrder/delete', 'webshopOrderController@delete_selected')->name('webshopOrder.delete_selected');
     Route::get('webshopOrder/{webshopOrder}/show', 'webshopOrderController@show')->name('webshopOrder.show');
+    Route::get('webshopOrder/{webshopOrder}/pdf', 'webshopOrderController@download_pdf')->name('webshopOrder.download_pdf');
 
     Route::resource('emailTemplates', 'EmailTemplateController');
     Route::post('emailTemplates/delete', 'EmailTemplateController@delete_selected')->name('emailTemplates.delete_selected');
+
+    Route::resource('user', 'UserController');
+    Route::post('user/search', 'UserController@index')->name('user.search');
+    Route::post('user/delete', 'UserController@delete_selected')->name('user.delete_selected');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
@@ -71,4 +76,6 @@ Route::get('webusers/order/{webshopOrder}', 'UserController@order_view')->name('
 
 Route::post('order/create', 'OrderController@create')->name('order.create');
 Route::get('order/checkout', 'CheckoutController@doPayment')->name('doPayment');
-Route::get('order/done', 'OrderController@done')->name('order.done');
+Route::get('order/{order_id}/return', 'CheckoutController@paymentDone')->name('paymentDone');
+Route::get('order/{order_id}/done', 'OrderController@done')->name('order.done');
+Route::post('checkout/webhook', 'CheckoutController@webhook')->name('checkout.webhook');

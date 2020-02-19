@@ -14,7 +14,7 @@ class WebshopOrder extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'order_nr', 'price_sub_total', 'price_shipping', 'price_total', 'invoice_address', 'delivery_address'
+        'order_nr', 'status', 'paymentMethod', 'price_sub_total', 'price_shipping', 'price_total', 'invoice_address', 'delivery_address'
     ];
 
     public $casts = [

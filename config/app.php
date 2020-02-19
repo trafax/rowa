@@ -56,7 +56,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://d2c26a43.ngrok.io'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -230,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

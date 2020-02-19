@@ -16,7 +16,7 @@ class WebshopCartController extends Controller
 
     public function add(Request $request, WebshopProduct $webshopProduct)
     {
-        Cart::Add($webshopProduct->id, $webshopProduct->title, 1, $webshopProduct->price, $request->get('filters')); // ID, TITLE, QTY, PRICE, FILTERS
+        Cart::Add($webshopProduct->id, $webshopProduct->title, $request->get('qty'), $webshopProduct->price, $request->get('filters')); // ID, TITLE, QTY, PRICE, FILTERS
 
         return redirect()->back()->with('message', 'Product geplaatst in de winkelwagen.');
     }

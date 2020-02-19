@@ -99,6 +99,17 @@
                 <div class="col-md-4">
                     <h3>2. Kies een betaalmethode</h3>
                     <span>Kies gewenste betaalmethode:</span>
+                    <div class="d-block">
+                        @foreach ($paymentMethods as $key => $paymentMethod)
+                        <div class="my-1">
+                            <label>
+                                <input type="radio" name="payment_method" value="{{ $paymentMethod->id }}" {{ $key == 0 ? 'checked' : '' }} class="mr-2">
+                                <img src="{{ htmlspecialchars($paymentMethod->image->size1x) }}" srcset="{{ htmlspecialchars($paymentMethod->image->size2x) }} 2x" class="mr-2">
+                                {{ htmlspecialchars($paymentMethod->description) }}
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="col-md-4">
