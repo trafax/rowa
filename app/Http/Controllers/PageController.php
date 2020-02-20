@@ -21,6 +21,8 @@ class PageController extends Controller
 
     public function index($slug)
     {
-        return view('pages.page');
+        $page = Page::where('slug', $slug)->firstOrFail();
+
+        return view('pages.page', ['page' => $page]);
     }
 }

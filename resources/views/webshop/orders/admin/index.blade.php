@@ -47,7 +47,7 @@
                     <td><a href="{{ route('admin.webshopOrder.show', $order) }}">{{ $order->order_nr }}</a></td>
                     <td>{{ $order->user->firstname }} {{ $order->user->preposition }} {{ $order->user->lastname }}</td>
                     <td>&euro; {{ price($order->price_total) }}</td>
-                    <td>{{ $order->status }}</td>
+                    <td>{!! $order->status == 'paid' ? '<span class="text-success">'. $order->status .'</span>' : $order->status !!}</td>
                     <td>
                         <a href="{{ route('admin.webshopOrder.download_pdf', $order) }}">PDF</a>
                     </td>

@@ -20,6 +20,7 @@ class CreatePagesTable extends Migration
             $table->uuid('webshop_category_id')->default(0);
             $table->string('title');
             $table->longText('content')->nullable();
+            $table->longText('template')->default('default');
             $table->text('hyperlink')->nullable();
             $table->string('slug')->nullable();
             $table->longText('seo')->nullable();

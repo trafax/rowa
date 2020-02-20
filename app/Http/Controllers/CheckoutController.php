@@ -70,7 +70,6 @@ class CheckoutController extends Controller
 
     public function sendEmail()
     {
-        // E-mail versturen
         Mail::to(Auth::user()->email)->send(new Order(session()->get('order')));
     }
 

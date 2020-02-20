@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('page/delete', 'PageController@delete_selected')->name('page.delete_selected');
     Route::post('page/sort', 'PageController@sort')->name('page.sort');
 
+    Route::post('text/store', 'TextController@store');
+
     Route::post('asset/upload', 'AssetController@upload')->name('asset.upload');
     Route::post('asset/upload_onthefly', 'AssetController@upload_onthefly')->name('asset.upload_onthefly');
     Route::get('asset/{asset}/delete', 'AssetController@delete')->name('asset.delete');
@@ -29,6 +31,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('asset/single_dropzone', 'AssetController@single_dropzone')->name('asset.single_dropzone');
     Route::post('asset/edit/{asset}', 'AssetController@edit')->name('asset.edit');
     Route::put('asset/{asset}/update', 'AssetController@update')->name('asset.update');
+    Route::post('asset/upload_tinymce', 'AssetController@upload_tinymce')->name('asset.upload_tinymce');
 
     Route::resource('webshopCategory', 'WebshopCategoryController');
     Route::post('webshopCategory/delete', 'WebshopCategoryController@delete_selected')->name('webshopCategory.delete_selected');

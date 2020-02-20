@@ -44,6 +44,7 @@
         ],
         "files": [
             "app/Helpers/Prices.php",
+            "app/Helpers/Text.php",
             "app/Libraries/Cart.php"
         ]
     },

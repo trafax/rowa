@@ -81,6 +81,14 @@
                                 <option value="1" {{ $obj->show_on_home == 1 ? 'selected' : '' }}>Ja</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Toon als blok op homepagina</label>
+                            <select name="template" class="form-control">
+                                @foreach (array_reverse(glob('../resources/views/pages/templates/*')) as $template)
+                                    <option value="{{ str_replace('.blade.php','',basename($template)) }}" {{ basename($template) == $obj->template ? 'selected' : '' }}>{{ str_replace('.blade.php','',basename($template)) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
