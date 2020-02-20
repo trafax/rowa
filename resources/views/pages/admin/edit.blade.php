@@ -35,10 +35,10 @@
                             <label>Titel pagina</label>
                             <input type="text" name="title" value="{{ old('title', $obj->title) }}" class="form-control" required>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Tekst</label>
                             <textarea class="editor" name="content">{!! $obj->content !!}</textarea>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-4">
                         <div class="form-group">
@@ -82,7 +82,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Toon als blok op homepagina</label>
+                            <label>Template</label>
                             <select name="template" class="form-control">
                                 @foreach (array_reverse(glob('../resources/views/pages/templates/*')) as $template)
                                     <option value="{{ str_replace('.blade.php','',basename($template)) }}" {{ basename($template) == $obj->template ? 'selected' : '' }}>{{ str_replace('.blade.php','',basename($template)) }}</option>

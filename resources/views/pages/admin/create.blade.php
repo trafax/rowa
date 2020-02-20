@@ -74,6 +74,14 @@
                                 <option value="1">Ja</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Template</label>
+                            <select name="template" class="form-control">
+                                @foreach (array_reverse(glob('../resources/views/pages/templates/*')) as $template)
+                                    <option value="{{ str_replace('.blade.php','',basename($template)) }}">{{ str_replace('.blade.php','',basename($template)) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

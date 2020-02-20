@@ -59,6 +59,9 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.user.index') }}" class="nav-link">Klanten</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.form.index') }}" class="nav-link">Formulieren</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Instellingen

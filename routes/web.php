@@ -56,6 +56,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('user', 'UserController');
     Route::post('user/search', 'UserController@index')->name('user.search');
     Route::post('user/delete', 'UserController@delete_selected')->name('user.delete_selected');
+
+    Route::resource('form', 'FormController');
+    Route::get('form/{form}/destroy', 'FormController@destroy')->name('form.destroy');
+    Route::get('form/{block}/block_edit', 'FormController@block_edit')->name('form.block.edit');
+    Route::put('form/{block}/block_update', 'FormController@block_update')->name('form.block.update');
+
+    Route::resource('form_field', 'FormFieldController');
+    Route::get('form_field/{form_field}/destroy', 'FormFieldController@destroy')->name('form_field.destroy');
+    Route::post('form_field/sort', 'FormFieldController@sort')->name('form_field.sort');
+
+    Route::resource('form_value', 'FormValueController');
+    Route::get('form_value/{form_value}/destroy', 'FormValueController@destroy')->name('form_value.destroy');
+    Route::post('form_value/sort', 'FormValueController@sort')->name('form_value.sort');
+
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
@@ -82,3 +96,6 @@ Route::get('order/checkout', 'CheckoutController@doPayment')->name('doPayment');
 Route::get('order/{order_id}/return', 'CheckoutController@paymentDone')->name('paymentDone');
 Route::get('order/{order_id}/done', 'OrderController@done')->name('order.done');
 Route::post('checkout/webhook', 'CheckoutController@webhook')->name('checkout.webhook');
+
+Route::post('form/send/{form}', 'FormController@send')->name('form.send');
+Route::get('form/getForms', 'FormController@getForms');

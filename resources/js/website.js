@@ -67,7 +67,7 @@ $(document).ready(function(){
             xhr.send(formData);
             },
         convert_urls: 0,
-        toolbar: 'formatselect | fontsizeselect | bold italic strikethrough | numlist bullist | link image media',
+        toolbar: 'formatselect | fontsizeselect | bold italic strikethrough | numlist bullist | link image media | forms',
         setup: function (editor) {
             editor.on('blur', function (e) {
                 var content = editor.getContent();
@@ -82,6 +82,35 @@ $(document).ready(function(){
                     url: $(object).data('action'),
                     type: 'POST'
                 });
+            });
+
+            editor.ui.registry.addMenuButton('forms', {
+                text: 'Voeg formulier toe',
+                fetch: function (callback) {
+
+                    var items = [];
+
+                    var request = new XMLHttpRequest();
+                    request.open('GET', '/form/getForms', false);
+                    request.send(null);
+
+                    var forms = JSON.parse(request.responseText);
+
+                    $.each(forms, function(key, form) {
+
+                        var item = {
+                            type: 'menuitem',
+                            text: form.title,
+                            onAction: function () {
+                                editor.insertContent('[shortcode module="form" id="'+ form.id +'"]');
+                            }
+                        };
+
+                        items.push(item);
+                    });
+
+                    callback(items);
+                  }
             });
         }
     });

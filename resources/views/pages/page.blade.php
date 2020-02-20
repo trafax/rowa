@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container main">
-        <h1>{{ $page->title }}</h1>
+        <h1 class="mb-4">{{ $page->title }}</h1>
     </div>
     @include('pages.templates.' . $page->template ?? 'default')
 @endsection
