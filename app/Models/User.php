@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(WebshopOrder::class, 'user_id', 'id');
     }
+
+    public function stock()
+    {
+        return $this->hasMany(UserProduct::class, 'user_id', 'id');
+    }
 }

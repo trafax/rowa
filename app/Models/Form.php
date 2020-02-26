@@ -21,4 +21,9 @@ class Form extends Model
     {
         return $this->hasMany('App\Models\FormField', 'parent_id', 'id')->orderBy('sort');
     }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(FormSubscription::class, 'form_id', 'id')->orderBy('created_at');
+    }
 }

@@ -24,7 +24,7 @@
                     </select>
                 </div>
                 <div>
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">Pagina toevoegen</a>
+                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">Klant toevoegen</a>
                 </div>
             </div>
         </div>
@@ -37,6 +37,7 @@
             <tr>
                 <th scope="col" style="width: 20px;"><input type="checkbox" name="check_all" value="1"></th>
                 <th scope="col">Naam</th>
+                <th scope="col">Bedrijf</th>
                 <th scope="col">Aantal bestellingen</th>
             </tr>
         </thead>
@@ -45,6 +46,7 @@
                 <tr>
                     <td><input type="checkbox" name="ids[]" class="check" value="{{ $user->id }}"></td>
                     <td><a href="{{ route('admin.user.edit', $user) }}">{{ $user->firstname }} {{ $user->preposition }} {{ $user->lastname }}</a></td>
+                    <td>{{ $user->company_name }}</td>
                     <td>{{ $user->orders->count() }}</td>
                 </tr>
             @endforeach

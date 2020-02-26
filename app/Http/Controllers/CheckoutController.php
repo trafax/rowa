@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\Order;
+use App\Mail\OrderInvoice;
 use App\Models\WebshopOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +61,7 @@ class CheckoutController extends Controller
             ],
             "description" => "Bestelling {$order['order_nr']}",
             "redirectUrl" => route('paymentDone', $order['id']),
-            //"webhookUrl"  => 'http://b38be11a.ngrok.io/checkout/webhook',
+            //"webhookUrl"  => 'http://81cfdad2.ngrok.io/checkout/webhook',
             "webhookUrl"  => route('checkout.webhook'),
             "method"      => $method,
         ]);
@@ -68,9 +69,14 @@ class CheckoutController extends Controller
         return redirect()->to($payment->getCheckoutUrl(), 303);
     }
 
-    public function sendEmail()
+    public function sendEmail(WebshopOrder $webshopOrder)
     {
-        Mail::to(Auth::user()->email)->send(new Order(session()->get('order')));
+        Mail::to($webshopOrder->user->email)->cc('info@vanspelden.nl')->send(new Order($webshopOrder));
+    }
+
+    public function sendInvoice(WebshopOrder $webshopOrder)
+    {
+        Mail::to($webshopOrder->user->email)->send(new OrderInvoice($webshopOrder));
     }
 
     public function webhook(Request $request)
@@ -81,6 +87,11 @@ class CheckoutController extends Controller
         $webshopOrder = WebshopOrder::find($orderId);
         $webshopOrder->status = $payment->status;
         $webshopOrder->save();
+
+        if ($payment->status == 'paid') {
+            self::sendEmail($webshopOrder);
+            self::sendInvoice($webshopOrder);
+        }
     }
 
     public function paymentDone($order_id)
@@ -88,8 +99,6 @@ class CheckoutController extends Controller
         $order = WebshopOrder::find($order_id);
 
         if ($order->status == 'paid') {
-            self::sendEmail();
-
             session()->remove('order');
             session()->remove('cart');
         }

@@ -47,7 +47,10 @@ class LoginController extends Controller
             case 'admin':
                 return $this->redirectTo;
             default:
-                return route('checkout');
+                if (session()->get('cart')['items'])
+                    return route('checkout');
+                else
+                    return route('user.profile');
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\Form as AppForm;
 use App\Models\Block;
 use App\Models\Form;
+use App\Models\FormSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -66,6 +67,10 @@ class FormController extends Controller
         }
 
         $email->send(new AppForm($form, $request));
+
+        $subscription = new FormSubscription();
+        $subscription->fill(['form_id' => $form->id, 'form_data' => $request->all()]);
+        $subscription->save();
 
         return redirect()->back()->with('message', $form->text_website);
     }

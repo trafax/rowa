@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Block;
 use App\Models\Form;
+use App\Models\FormSubscription;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -61,5 +62,10 @@ class FormController extends Controller
         $block->save();
 
         return redirect()->back();
+    }
+
+    public function show_subscription(FormSubscription $formSubscription)
+    {
+        return view('form.admin.subscription', ['subscription' => $formSubscription]);
     }
 }

@@ -90464,6 +90464,7 @@ $(function () {
       //'//www.tinymce.com/css/codepen.min.css'
     ]
   });
+  $('[data-toggle="tooltip"]').tooltip();
 });
 
 /***/ }),

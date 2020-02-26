@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('form/{form}/destroy', 'FormController@destroy')->name('form.destroy');
     Route::get('form/{block}/block_edit', 'FormController@block_edit')->name('form.block.edit');
     Route::put('form/{block}/block_update', 'FormController@block_update')->name('form.block.update');
+    Route::get('form/subscription/{formSubscription}/show', 'FormController@show_subscription')->name('form.subscription.show');
 
     Route::resource('form_field', 'FormFieldController');
     Route::get('form_field/{form_field}/destroy', 'FormFieldController@destroy')->name('form_field.destroy');
@@ -90,6 +91,9 @@ Route::get('webuser/profile', 'UserController@profile')->name('user.profile')->m
 Route::put('webuser/update', 'UserController@update')->name('user.update')->middleware('auth');
 Route::get('webusers/orders', 'UserController@orders')->name('user.orders')->middleware('auth');
 Route::get('webusers/order/{webshopOrder}', 'UserController@order_view')->name('user.order.view')->middleware('auth');
+Route::get('webuser/stock', 'StockController@index')->name('user.stock')->middleware('auth');
+Route::post('webuser/stock/order', 'StockController@order')->name('user.stock.order')->middleware('auth');
+Route::get('webuser/stock/done', 'StockController@done')->name('user.stock.done')->middleware('auth');
 
 Route::post('order/create', 'OrderController@create')->name('order.create');
 Route::get('order/checkout', 'CheckoutController@doPayment')->name('doPayment');

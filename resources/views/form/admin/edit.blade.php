@@ -26,6 +26,7 @@
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="nav-home" aria-selected="true">Basis</a>
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#fields" role="tab" aria-controls="nav-home" aria-selected="true">Velden</a>
                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#text" role="tab" aria-controls="nav-home" aria-selected="true">Teksten</a>
+                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#subscriptions" role="tab" aria-controls="nav-home" aria-selected="true">Inzendingen</a>
                             </div>
                         </nav>
                         <div class="tab-content pt-4" id="nav-tabContent">
@@ -114,6 +115,16 @@
                                     <textarea name="text_email" class="editor">{!! $form->text_email !!}</textarea>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="subscriptions" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <table class="table">
+                                    @foreach ($form->subscriptions as $subscription)
+                                        <tr>
+                                            <td>{{ $subscription->created_at->format('d-m-Y H:i') }}</td>
+                                            <td class="text-right"><a href="javascript:;" onclick="return show_subscription('{{ $subscription->id }}')">Bekijk inschrijving</a></td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
                         </div>
                         <div>
                             <hr>
@@ -125,4 +136,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    var show_subscription = function(id) {
+        $.ajax({
+            type: "get",
+            url: "/admin/form/subscription/"+id+"/show",
+            data: {'id': id},
+            dataType: "html",
+            success: function (response) {
+                $('body').prepend(response);
+                $('.modal').modal('show');
+                $('.modal').on('hidden.bs.modal', function (e) {
+                    $('.modal').remove();
+                });
+            }
+        });
+    };
+</script>
 @endsection

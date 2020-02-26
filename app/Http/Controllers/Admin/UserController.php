@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -14,7 +15,7 @@ class UserController extends Controller
     {
         if ($request->get('search'))
         {
-            $users = User::where('lastname', 'LIKE', '%'.$request->get('search').'%')->get();
+            $users = User::where('lastname', 'LIKE', '%'.$request->get('search').'%')->where('role', 'customer')->get();
         }
         else
         {
@@ -49,6 +50,20 @@ class UserController extends Controller
     {
         $user->fill($request->all());
         $user->save();
+
+        UserProduct::where('user_id', $user->id)->delete();
+
+        foreach ($request->get('product_title') as $key => $title) {
+            if ($title) {
+                    $userProduct = new UserProduct();
+                    $userProduct->user_id = $user->id;
+                    $userProduct->title = $title;
+                    $userProduct->qty = $request->get('product_qty')[$key];
+                    $userProduct->collie = $request->get('product_collie')[$key];
+                    $userProduct->email_no_stock = $request->get('product_email_no_stock')[$key];
+                    $userProduct->save();
+            }
+        }
 
         return redirect()->route('admin.user.index')->with('message', 'Gebruiker succesvol aangepast.');
     }

@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Rowa Druk & Media'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://d2c26a43.ngrok.io'),
+    'url' => env('APP_URL', 'rowa'),
 
     'asset_url' => env('ASSET_URL', null),
 
