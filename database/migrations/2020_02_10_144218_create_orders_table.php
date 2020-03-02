@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('price_total')->default(0);
             $table->longText('invoice_address');
             $table->longText('delivery_address');
+            $table->longText('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -22,6 +22,8 @@ class WebshopProductController extends Controller
                     $filterArr[$filter->slug][] = [
                         'title' => $filter->title,
                         'slug' => $filter->pivot->slug,
+                        'fixed_price' => $filter->pivot->fixed_price,
+                        'added_price' => $filter->pivot->added_price,
                         'value' => $filter->pivot->value
                     ];
                 }

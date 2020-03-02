@@ -38,7 +38,7 @@
                             <div class="col-2 font-weight-bold">{{ $product->collie }}</div>
                             <div class="col-2">
                                 <select name="qty[{{ $product->id }}]" class="form-control">
-                                    @for ($i=0; $i<=(($product->qty ?? 0) / ($product->collie ?? 0)); $i++ )
+                                    @for ($i=0; $i<=(($product->qty ?? 0) / ($product->collie ?? 1)); $i++)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
                                 </select>

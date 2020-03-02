@@ -12,11 +12,14 @@ require('tinymce/plugins/image');
 require('tinymce/plugins/paste');
 require('tinymce/plugins/lists');
 require('tinymce/plugins/advlist');
+window.bsCustomFileInput = require('bs-custom-file-input');
 
 
 require('bootstrap');
 
 $(document).ready(function(){
+
+    bsCustomFileInput.init();
 
     $('.menu-toggle').click(function(e){
         if ($('#main-menu').hasClass('d-none')) {

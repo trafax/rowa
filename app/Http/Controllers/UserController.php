@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function orders()
     {
-        $orders = WebshopOrder::where('user_id', Auth::user()->id)->orderBy('order_nr')->get();
+        $orders = WebshopOrder::where('user_id', Auth::user()->id)->orderByRaw('CAST(order_nr as UNSIGNED) DESC')->get();
 
         return view('users.orders')->with('orders', $orders);
     }

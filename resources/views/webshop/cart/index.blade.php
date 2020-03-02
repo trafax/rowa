@@ -34,6 +34,9 @@
                                             <span class="text-secondary"><span class="font-weight-bold">{{ $optionTitle }}</span>: {{ $optionValue }}</span>
                                         @endforeach
                                     </div>
+                                    @if ($row['image'])
+                                        <a href="{{ $row['image'] }}" target="_blank">Geüpload bestand</a>
+                                    @endif
                                 </div>
                                 <div class="col"><input type="number" name="qty[{{ $key }}]" value="{{ $row['qty'] }}" class="form-control col-2"></div>
                                 <div class="col text-right">&euro; {{ price($row['price'] * $row['qty']) }}</div>

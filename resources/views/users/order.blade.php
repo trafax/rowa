@@ -28,6 +28,9 @@
                                         <span class="text-secondary"><span class="font-weight-bold">{{ $optionTitle }}</span>: {{ $optionValue }}</span>
                                     @endforeach
                                 </div>
+                                @if ($rule->image)
+                                    <a href="{{ $rule->image }}">Geüpload bestand</a>
+                                @endif
                             </div>
                             <div class="col">{{ $rule->qty }}</div>
                             <div class="col text-right">&euro; {{ price($rule->product->price * $rule->qty) }}</div>

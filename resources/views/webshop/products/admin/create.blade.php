@@ -66,6 +66,13 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Drukwerkbestand van klant</label>
+                            <select class="form-control" name="needs_image">
+                                <option value="0">Nee</option>
+                                <option value="1">Ja</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

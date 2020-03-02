@@ -10,14 +10,14 @@
                 @endif
                 {{ $webshopCategory->title }}
             </div>
-            <div class="filter ml-auto">
+            {{-- <div class="filter ml-auto">
                 <select class="form-control form-control-sm">
                     <option>Sorteer op</option>
                     <option>Prijs laag - hoog</option>
                     <option>Prijs hoog - laag</option>
                     <option>Alfabetisch</option>
                 </select>
-            </div>
+            </div> --}}
         </div>
         <div class="row">
             <div class="col filters">

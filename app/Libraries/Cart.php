@@ -2,11 +2,30 @@
 
 namespace App\Libraries;
 
+use App\Models\WebshopProduct;
+use App\Models\WebshopProductFilter;
+
 class Cart
 {
     public static function add()
     {
-        list($id, $title, $qty, $price, $options) = func_get_args();
+        list($id, $title, $qty, $price, $options, $image) = func_get_args();
+
+        // Extra prijs bovenop de basis prijs berekenen mocht een filter een meerprijs hebben
+        $product = WebshopProduct::find($id);
+        foreach ($options as $option => $slug)
+        {
+            $filter = WebshopProductFilter::where('slug', $slug)->where('webshop_product_id', $product->id)->first();
+
+            if ($filter->fixed_price > 0)
+            {
+                $price = $filter->fixed_price;
+            }
+            if ($filter->added_price > 0)
+            {
+                $price = $price + $filter->added_price;
+            }
+        }
 
         session()->push('cart.items',
         [
@@ -14,7 +33,8 @@ class Cart
             'title' => $title,
             'qty' => $qty,
             'price' => $price,
-            'options' => $options
+            'options' => $options,
+            'image' => $image
         ]);
 
         self::calculate();

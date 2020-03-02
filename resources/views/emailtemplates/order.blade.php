@@ -57,6 +57,14 @@
     <tr>
         <td><strong>Factuurnummer:</strong></td><td>{{ $order->order_nr }}</td>
     </tr>
+    @if ($order->comment)
+        <tr>
+            <td colspan="2"><strong>Opmerking:</strong></td>
+        </tr>
+        <tr>
+            <td colspan="2"><i>{{ $order->comment }}</i></td>
+        </tr>
+    @endif
 </table>
 
 <hr>
@@ -74,6 +82,10 @@
                 @foreach ($rule->options ?? [] as $optionTitle => $optionValue)
                     <strong>{{ $optionTitle }}:</strong> {{ $optionValue }}
                 @endforeach
+                @if ($rule->image)
+                    <br>
+                    <a href="{{ url($rule->image) }}" target="_blank">Geüpload bestand</a>
+                @endif
             </td>
             <td>{{ $rule->qty }}x</td>
             <td>&euro; {{ price($rule->price * $rule->qty) }}</td>

@@ -34,6 +34,7 @@
             <tr>
                 <th scope="col" style="width: 20px;"><input type="checkbox" name="check_all" value="1"></th>
                 <th scope="col">Nr</th>
+                <th scope="col">Datum</th>
                 <th scope="col">Naam</th>
                 <th scope="col">Prijs</th>
                 <th scope="col">Status</th>
@@ -45,6 +46,7 @@
                 <tr id="{{ $order->id }}">
                     <td><input type="checkbox" name="ids[]" class="check" value="{{ $order->id }}"></td>
                     <td><a href="{{ route('admin.webshopOrder.show', $order) }}">{{ $order->order_nr }}</a></td>
+                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
                     <td>{{ $order->user->firstname }} {{ $order->user->preposition }} {{ $order->user->lastname }}</td>
                     <td>&euro; {{ price($order->price_total) }}</td>
                     <td>{!! $order->status == 'paid' ? '<span class="text-success">'. $order->status .'</span>' : $order->status !!}</td>

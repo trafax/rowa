@@ -12,7 +12,7 @@ class WebshopOrderRule extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'order_id', 'user_id', 'product_id', 'qty', 'price', 'options'
+        'order_id', 'user_id', 'product_id', 'qty', 'price', 'options', 'image'
     ];
 
     public $casts = [

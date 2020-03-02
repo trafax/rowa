@@ -35,7 +35,8 @@
                             <a href="{{ route('checkout') }}">inloggen</a> <span>|</span>
                         @endif
                     </div>
-                    <form class="ml-2">
+                    <form class="ml-2" method="post" action="{{ route('search') }}">
+                        @csrf
                         <input type="text" name="search" placeholder="Zoek..." class="form-control">
                     </form>
                 </div>

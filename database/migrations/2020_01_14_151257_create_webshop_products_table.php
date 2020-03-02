@@ -23,6 +23,7 @@ class CreateWebshopProductsTable extends Migration
             $table->string('sku')->nullable();
             $table->longText('description')->nullable();
             $table->string('slug');
+            $table->tinyInteger('needs_image')->default(0)->nullable();
             $table->integer('sort')->default(0);
             $table->timestamps();
             $table->softDeletes();

@@ -22,6 +22,7 @@ class CreateOrderRulesTable extends Migration
             $table->integer('qty')->default(1);
             $table->decimal('price')->default(0);
             $table->longText('options')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

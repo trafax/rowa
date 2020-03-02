@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="home-slider">
+    <div class="home-slider d-none d-md-block">
         <div class="bx-slider">
             @foreach ($page->assets as $asset)
                 <div style="background-image: url('{{ asset('assets/' . $asset->file) }}')" class="slide">

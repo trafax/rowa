@@ -21,7 +21,7 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        if (Auth::user())
+        if (Auth::user() && session()->get('cart')['items'])
         {
             $paymentMethods = $this->mollie->methods->all();
             return view('webshop.checkout.index', ['paymentMethods' => $paymentMethods]);
@@ -61,8 +61,8 @@ class CheckoutController extends Controller
             ],
             "description" => "Bestelling {$order['order_nr']}",
             "redirectUrl" => route('paymentDone', $order['id']),
-            //"webhookUrl"  => 'http://81cfdad2.ngrok.io/checkout/webhook',
-            "webhookUrl"  => route('checkout.webhook'),
+            "webhookUrl"  => 'http://7b4f1bdd.ngrok.io/checkout/webhook',
+            //"webhookUrl"  => route('checkout.webhook'),
             "method"      => $method,
         ]);
 

@@ -73,6 +73,8 @@ class OrderController extends Controller
             $order->price_total = session()->get('cart.prices')['total'];
             $order->price_shipping = session()->get('cart.prices')['shipping'];
 
+            $order->comment = $request->get('comment');
+
             $order->save();
 
             // Product regels opslaan
@@ -85,6 +87,7 @@ class OrderController extends Controller
                 $orderRule->qty = $row['qty'];
                 $orderRule->price = $row['price'];
                 $orderRule->options = $row['options'];
+                $orderRule->image = $row['image'];
                 $orderRule->save();
             }
 

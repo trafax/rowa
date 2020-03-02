@@ -110,6 +110,11 @@
                         </div>
                         @endforeach
                     </div>
+
+                    <div class="form-group mt-4">
+                        <label class="font-weight-bold">Plaats eventuele opmerking</label>
+                        <textarea class="form-control" rows="5" name="comment">{{ old('comment', (session()->get('order')['comment'] ?? '')) }}</textarea>
+                    </div>
                 </div>
 
                 <div class="col-md-4">

@@ -193,5 +193,6 @@ return [
         'title'                 => 'titel',
         'username'              => 'gebruikersnaam',
         'year'                  => 'jaar',
+        'file'                  => 'bestand'
     ],
 ];

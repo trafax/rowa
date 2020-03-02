@@ -64,8 +64,8 @@ class WebshopProductController extends Controller
                 if (! $value) continue;
 
                 $value = trim($value, ' ');
-                $fixed_price = number_format($fixed_price);
-                $added_price = number_format($added_price);
+                $fixed_price = number_format($fixed_price, 2);
+                $added_price = number_format($added_price, 2);
 
                 $webshopProduct->filters()->attach($filter_id, [
                     'id' => Str::uuid(),

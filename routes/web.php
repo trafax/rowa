@@ -76,6 +76,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('/admin', '\App\Http\Controllers\Auth\LoginController@showLoginForm');
 
+Route::match(['post','get'], 'search', 'SearchController@index')->name('search');
+
 Route::any('{slug?}', 'PageController@index')->name('page')->where('slug', '[a-z-]{3,}');
 Route::any('webshop/category/{slug?}/{any?}', 'WebshopCategoryController@index')->name('webshopCategory')->where('any', '.*');
 Route::any('webshop/product/{slug?}', 'WebshopProductController@index')->name('webshopProduct');

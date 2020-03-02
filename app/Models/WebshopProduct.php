@@ -14,7 +14,7 @@ class WebshopProduct extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'parent_id', 'title', 'brand', 'type', 'price', 'tax', 'sku', 'description', 'slug'
+        'parent_id', 'title', 'brand', 'type', 'price', 'tax', 'sku', 'description', 'slug', 'needs_image'
     ];
 
     public function category()

@@ -69,6 +69,13 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>Drukwerkbestand van klant</label>
+                            <select class="form-control" name="needs_image">
+                                <option value="0">Nee</option>
+                                <option value="1" {{ $object->needs_image == 1 ? 'selected' : '' }}>Ja</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
