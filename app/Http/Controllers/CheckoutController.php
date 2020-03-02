@@ -61,8 +61,8 @@ class CheckoutController extends Controller
             ],
             "description" => "Bestelling {$order['order_nr']}",
             "redirectUrl" => route('paymentDone', $order['id']),
-            "webhookUrl"  => 'http://7b4f1bdd.ngrok.io/checkout/webhook',
-            //"webhookUrl"  => route('checkout.webhook'),
+            //"webhookUrl"  => 'http://7b4f1bdd.ngrok.io/checkout/webhook',
+            "webhookUrl"  => route('checkout.webhook'),
             "method"      => $method,
         ]);
 
