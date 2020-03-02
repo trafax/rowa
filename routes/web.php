@@ -37,18 +37,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('webshopCategory/delete', 'WebshopCategoryController@delete_selected')->name('webshopCategory.delete_selected');
     Route::post('webshopCategory/sort', 'WebshopCategoryController@sort')->name('webshopCategory.sort');
 
-    Route::resource('webshopProduct', 'webshopProductController');
-    Route::post('webshopProduct/delete', 'webshopProductController@delete_selected')->name('webshopProduct.delete_selected');
-    Route::post('webshopProduct/sort', 'webshopProductController@sort')->name('webshopProduct.sort');
+    Route::resource('webshopProduct', 'WebshopProductController');
+    Route::post('webshopProduct/delete', 'WebshopProductController@delete_selected')->name('webshopProduct.delete_selected');
+    Route::post('webshopProduct/sort', 'WebshopProductController@sort')->name('webshopProduct.sort');
 
-    Route::resource('webshopFilter', 'webshopFilterController');
-    Route::post('webshopFilter/delete', 'webshopFilterController@delete_selected')->name('webshopFilter.delete_selected');
-    Route::post('webshopFilter/sort', 'webshopFilterController@sort')->name('webshopFilter.sort');
+    Route::resource('webshopFilter', 'WebshopFilterController');
+    Route::post('webshopFilter/delete', 'WebshopFilterController@delete_selected')->name('webshopFilter.delete_selected');
+    Route::post('webshopFilter/sort', 'WebshopFilterController@sort')->name('webshopFilter.sort');
 
-    Route::get('webshopOrder', 'webshopOrderController@index')->name('webshopOrder.index');
-    Route::post('webshopOrder/delete', 'webshopOrderController@delete_selected')->name('webshopOrder.delete_selected');
-    Route::get('webshopOrder/{webshopOrder}/show', 'webshopOrderController@show')->name('webshopOrder.show');
-    Route::get('webshopOrder/{webshopOrder}/pdf', 'webshopOrderController@download_pdf')->name('webshopOrder.download_pdf');
+    Route::get('webshopOrder', 'WebshopOrderController@index')->name('webshopOrder.index');
+    Route::post('webshopOrder/delete', 'WebshopOrderController@delete_selected')->name('webshopOrder.delete_selected');
+    Route::get('webshopOrder/{webshopOrder}/show', 'WebshopOrderController@show')->name('webshopOrder.show');
+    Route::get('webshopOrder/{webshopOrder}/pdf', 'WebshopOrderController@download_pdf')->name('webshopOrder.download_pdf');
 
     Route::resource('emailTemplates', 'EmailTemplateController');
     Route::post('emailTemplates/delete', 'EmailTemplateController@delete_selected')->name('emailTemplates.delete_selected');
