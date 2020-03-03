@@ -90,44 +90,24 @@
         <div class="container main">
             <div class="row">
                 <div class="col-md-3 text-center text-md-left mb-4">
-                    <h3>Overzicht</h3>
-                    <a href="#">Over ons</a><br>
-                    <a href="#">Drukwerk</a><br>
-                    <a href="#">Sign & Belettering</a><br>
-                    <a href="#">Webdesign</a><br>
-                    <a href="#">Textiel</a><br>
-                    <a href="#">Specials</a><br>
-                    <a href="#">Niedorper Weekblad</a><br>
-                    <a href="#">Contact</a>
+                    @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor" data-identifier="footer-overview" data-action="/admin/text/store"> @endif
+                        {!! text('footer-overview') !!}
+                    @if (Auth::user() && Auth::user()->role == 'admin') </div> @endif
                 </div>
                 <div class="col-md-3 text-center text-md-left mb-4">
-                    <h3>Home</h3>
-                    <p>Rowa Druk & Media<br>
-                        Molenvaart 357a<br>
-                        1764 AR Breezand<br>
-                        T 0223 52 1280<br>
-                        E info@rowa.nl<br>
-                        Openingstijden:<br>
-                        maandag t/m vrijdag<br>
-                        8.00-17.15 uur</p>
+                    @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor" data-identifier="footer-home" data-action="/admin/text/store"> @endif
+                        {!! text('footer-home') !!}
+                    @if (Auth::user() && Auth::user()->role == 'admin') </div> @endif
                 </div>
                 <div class="col-md-3 text-center text-md-left mb-4">
-                    <h3>Informatie</h3>
-                    <a href="#">Algemene Voorwaarden</a><br>
-                    <a href="#">FAQ</a><br>
-                    <a href="#">Levering</a><br>
-                    <a href="#">Uw voorraad</a><br>
-                    <a href="#">Account instellingen</a><br>
-                    <a href="#">Strippenkaart</a>
+                    @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor" data-identifier="footer-information" data-action="/admin/text/store"> @endif
+                        {!! text('footer-information') !!}
+                    @if (Auth::user() && Auth::user()->role == 'admin') </div> @endif
                 </div>
                 <div class="col-md-3 text-center text-md-left mb-4">
-                    <h3>Extra's</h3>
-                    <p>
-                        <a href="#"><img src="/img/bollenkaartjes.png"></a><br>
-                        <a href="#"><img src="/img/decolight.png"></a><br>
-                        <a href="#"><img src="/img/spanframeverhuur.png"></a><br>
-                        <a href="#"><img src="/img/niedorper.png"></a>
-                    </p>
+                    @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor" data-identifier="footer-extra" data-action="/admin/text/store"> @endif
+                        {!! text('footer-extra') !!}
+                    @if (Auth::user() && Auth::user()->role == 'admin') </div> @endif
                 </div>
             </div>
         </div>

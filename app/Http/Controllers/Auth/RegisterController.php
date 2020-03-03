@@ -85,6 +85,6 @@ class RegisterController extends Controller
             'role' => 'customer'
         ]);
 
-        Auth::login($user);
+        //Auth::login($user);
     }
 }
