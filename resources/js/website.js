@@ -1,6 +1,7 @@
 window.Popper = require('popper.js').default;
 window.$ = window.jQuery = require('jquery');
 //window.lightSlider = require('lightslider');
+window.sortable = require('jquery-ui/ui/widgets/sortable');
 require('../../node_modules/bxslider/dist/jquery.bxslider');
 window.fancybox = require('@fancyapps/fancybox/dist/jquery.fancybox');
 
@@ -117,4 +118,88 @@ $(document).ready(function(){
             });
         }
     });
+
+    $('.sortable').sortable({
+        delay: 300,
+        handle: '.mover',
+        update: function( event, ui ) {
+
+           var action = $(this).data('action');
+           var data = $(this).sortable('toArray');
+
+           $.ajax({
+              headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              data: {'items' : data},
+              url: action,
+              type: 'POST',
+              success: function(response)
+              {
+                  if (response.reload) {
+                    window.location.reload();
+                  }
+              },
+              dataType: 'json'
+           });
+        }
+     });
 });
+
+window.create_block = function(data){
+
+    $.ajax({
+        type: "get",
+        url: "/admin/block/create",
+        data: data,
+        dataType: "html",
+        success: function (response) {
+            $('body').append(response);
+            $('.modal').modal('show');
+            $('.modal').on('hidden.bs.modal', function (e) {
+                $('.modal').remove();
+            });
+        }
+    });
+
+    return false;
+};
+
+window.edit_block = function(data){
+
+    $.ajax({
+        type: "get",
+        url: "/admin/block/"+data.id+"/edit",
+        data: data,
+        dataType: "html",
+        success: function (response) {
+            $('body').append(response);
+            $('.modal').modal('show');
+            $('.modal').on('hidden.bs.modal', function (e) {
+                $('.modal').remove();
+            });
+        }
+    });
+
+    return false;
+};
+
+window.delete_block = function(data){
+
+    if (confirm('Blok verwijderen?')) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             },
+            type: "delete",
+            url: "/admin/block/delete",
+            data: data,
+            dataType: "html",
+            success: function (response) {
+                window.location.reload();
+            }
+        });
+    }
+
+    return false;
+};

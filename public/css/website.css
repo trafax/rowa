@@ -10918,3 +10918,13 @@ h2.category {
 .copyright a {
   color: white;
 }
+
+.row .actions {
+  position: absolute;
+  top: 0px;
+  right: -60px;
+  display: none;
+}
+.row:hover .actions {
+  display: block;
+}

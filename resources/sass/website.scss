@@ -519,3 +519,18 @@ h2 {
         color: white;
     }
 }
+
+
+.row {
+    .actions {
+        position: absolute;
+        top: 0px;
+        right: -60px;
+        display: none;
+    }
+    &:hover {
+        .actions {
+            display: block;
+        }
+    }
+}

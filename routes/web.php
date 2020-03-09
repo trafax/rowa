@@ -24,6 +24,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::post('text/store', 'TextController@store');
 
+    Route::get('block/create', 'BlockController@create');
+    Route::post('block/store', 'BlockController@store');
+    Route::get('block/{block}/edit', 'BlockController@edit');
+    Route::put('block/{block}/update', 'BlockController@update');
+    Route::post('block/sort', 'BlockController@sort');
+    Route::delete('block/delete', 'BlockController@delete');
+
     Route::post('asset/upload', 'AssetController@upload')->name('asset.upload');
     Route::post('asset/upload_onthefly', 'AssetController@upload_onthefly')->name('asset.upload_onthefly');
     Route::get('asset/{asset}/delete', 'AssetController@delete')->name('asset.delete');
