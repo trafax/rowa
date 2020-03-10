@@ -29,6 +29,11 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="layout" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="form-group">
+                                <label>Achtergrondkleur regel</label>
+                                <input type="text" name="blockData[row_bg_color]" class="form-control" value="{{ $block->blockData['row_bg_color'] ?? '' }}">
+                            </div>
+                            <hr>
                             @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
                                 <div class="form-group">
                                     <label>Achtergrondkleur kolom {{ $i }}</label>
