@@ -46,6 +46,11 @@ class CheckoutController extends Controller
             case 'creditcard':
                 $method = \Mollie\Api\Types\PaymentMethod::CREDITCARD;
             break;
+            case 'op_rekening':
+                $webshopOrder = WebshopOrder::find(session('order')['id']);
+                self::sendEmail($webshopOrder);
+                return redirect()->route('checkout.oprekening_done');
+            break;
             default:
                 $method = \Mollie\Api\Types\PaymentMethod::IDEAL;
             break;
@@ -104,5 +109,17 @@ class CheckoutController extends Controller
         }
 
         return redirect()->route('order.done', $order_id);
+    }
+
+    public function oprekeningDone()
+    {
+        $order = WebshopOrder::find(session('order')['id']);
+        $order->status = 'rekening';
+        $order->save();
+
+        session()->remove('order');
+        session()->remove('cart');
+
+        return redirect()->route('order.done', $order->id);
     }
 }

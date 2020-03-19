@@ -319,6 +319,29 @@ body {
     }
 }
 
+.block-row {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.home-video {
+    background-image: url('/img/video-bg.jpg');
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+    .container {
+        h2 {
+            font-size: 48px;
+        }
+        h3 {
+            font-size: 38px;
+            font-family: 'dinbold', 'sans-serif';
+            color: #009fe3;
+        }
+    }
+}
+
 h2 {
     &.category {
         font-family: 'dinbold', 'sans-serif';

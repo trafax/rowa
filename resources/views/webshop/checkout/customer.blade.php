@@ -4,7 +4,7 @@
 
     <div class="main container py-4">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 offset-3">
                 <h2>Inloggen</h2>
                 <hr>
                 <div class="card">
@@ -49,12 +49,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
                 <h2>Aanmelden</h2>
                 <hr>
                 <p>Ik ben nog geen klant van Rowa en wil mij graag aanmelden.</p>
                 <p><a href="{{ route('register') }}" class="btn btn-primary">Aanmelden</a></p>
-            </div>
+            </div> --}}
         </div>
     </div>
 

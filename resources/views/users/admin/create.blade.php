@@ -25,6 +25,15 @@
             </div>
         </nav>
         <div class="tab-content py-4" id="nav-tabContent">
+
+            @if ($errors->any())
+                <div class="alert alert-warning">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                </div>
+            @endif
+
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="form-group">
                     <label>Bedrijfsnaam</label>

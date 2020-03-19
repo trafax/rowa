@@ -101,7 +101,7 @@ class OrderController extends Controller
     {
         $order = WebshopOrder::find($order_id);
 
-        if ($order->status == 'paid') {
+        if ($order->status == 'paid' || $order->status == 'rekening') {
             return view('webshop.orders.done');
         } else {
             return view('webshop.orders.error');

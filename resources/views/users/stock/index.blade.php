@@ -20,17 +20,26 @@
                     </div>
                 @endif
 
-                <div class="row mt-4">
-                    <div class="col font-weight-bold">PRODUCT</div>
-                    <div class="col-2 font-weight-bold">AANTAL</div>
-                    <div class="col-2 font-weight-bold">COLLIE</div>
-                    <div class="col-2 font-weight-bold">BESTEL</div>
-                </div>
-
-                <hr>
-
                 <form method="post" action="{{ route('user.stock.order') }}">
                     @csrf
+                    <div class="products-container mt-4">
+                        @foreach (Auth::user()->stock as $webshopProduct)
+                            <div class="product border p-2">
+                                <div class="image" style="background-image: url('{{ asset($webshopProduct->image) }}')">
+                                </div>
+                                <div class="title">{{ $webshopProduct->title }}</div>
+                                <div class="price mt-4">
+                                    <select name="qty[{{ $webshopProduct->id }}]" class="form-control">
+                                        @for ($i=0; $i<=(($webshopProduct->qty ?? 0) / ($webshopProduct->collie ?? 1)); $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- @csrf
                     @foreach (Auth::user()->stock as $product)
                         <div class="row py-1">
                             <div class="col font-weight-bold">{{ $product->title }}</div>
@@ -44,7 +53,7 @@
                                 </select>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
 
                     <hr>
                     <button type="submit" class="btn btn-success">Bestel geselecteerde producten</button>

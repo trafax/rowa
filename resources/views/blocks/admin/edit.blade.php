@@ -33,6 +33,10 @@
                                 <label>Achtergrondkleur regel</label>
                                 <input type="text" name="blockData[row_bg_color]" class="form-control" value="{{ $block->blockData['row_bg_color'] ?? '' }}">
                             </div>
+                            <div class="form-group">
+                                <label>Achtergrondafbeelding</label>
+                                @include ('assets.admin.single', ['name' => 'blockData[row_bg_image]', 'value' => $block->blockData['row_bg_image'] ?? '', 'second' => true])
+                            </div>
                             <hr>
                             @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
                                 <div class="form-group">

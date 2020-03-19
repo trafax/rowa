@@ -76,9 +76,11 @@
                             @endif
                         </li>
                     @endforeach
-                    <li class="float-right m-0">
-                        <a href="{{ route('webshopCart.index') }}"><img src="{{ asset('img/cart.png') }}" class="cart-image"></a>
-                    </li>
+                    @if (session()->get('cart')['items'])
+                        <li class="float-right m-0">
+                            <a href="{{ route('webshopCart.index') }}"><img src="{{ asset('img/cart.png') }}" class="cart-image"></a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

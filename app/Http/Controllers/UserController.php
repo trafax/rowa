@@ -38,4 +38,13 @@ class UserController extends Controller
 
         return redirect()->back()->with('message', 'Uw gegevens zijn succesvol opgeslagen.');
     }
+
+    public function products()
+    {
+        $products = Auth::user()->products()->get();
+
+        return view('users.products', [
+            'products' => $products
+        ]);
+    }
 }

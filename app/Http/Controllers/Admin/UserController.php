@@ -32,6 +32,10 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'unique:users'
+        ]);
+
         $user = new User();
         $request->request->set('password', Hash::make($request->get('password')));
         $request->request->set('role', 'customer');
@@ -60,6 +64,7 @@ class UserController extends Controller
                     $userProduct->title = $title;
                     $userProduct->qty = $request->get('product_qty')[$key];
                     $userProduct->collie = $request->get('product_collie')[$key];
+                    $userProduct->image = $request->get('image')[$key];
                     $userProduct->email_no_stock = $request->get('product_email_no_stock')[$key];
                     $userProduct->save();
             }

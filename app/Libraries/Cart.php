@@ -13,7 +13,7 @@ class Cart
 
         // Extra prijs bovenop de basis prijs berekenen mocht een filter een meerprijs hebben
         $product = WebshopProduct::find($id);
-        foreach ($options as $option => $slug)
+        foreach ($options ?? [] as $option => $slug)
         {
             $filter = WebshopProductFilter::where('slug', $slug)->where('webshop_product_id', $product->id)->first();
 

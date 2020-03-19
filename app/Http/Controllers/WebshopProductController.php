@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\WebshopProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WebshopProductController extends Controller
 {
     public function index($slug)
     {
         $webshopProduct = WebshopProduct::where('slug', $slug)->firstOrFail();
+
+        // Afgeschermde producten alleen tonen voor de gekoppelde gebruikers
+        if ($webshopProduct->users->count() > 0 && ! @in_array(Auth::user()->id, $webshopProduct->users()->pluck('id')->toArray())) {
+            abort(404);
+        }
 
         $filters = function() use ($webshopProduct) {
 

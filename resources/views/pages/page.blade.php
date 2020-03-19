@@ -13,7 +13,7 @@
 
     <div class="{{ Auth::user() && Auth::user()->role == 'admin' ? 'sortable' : '' }}" data-action="/admin/block/sort">
         @foreach ($page->blocks as $block)
-        <div style="{!! ($block->blockData['row_bg_color'] ?? null) ? 'background-color: '.$block->blockData['row_bg_color'].';' : '' !!}" class="mb-4 {{ ($block->blockData['row_bg_color'] ?? '') ? 'py-4' : 'p-0' }}">
+        <div style="{!! ($block->blockData['row_bg_color'] ?? null) ? 'background-color: '.$block->blockData['row_bg_color'].';' : '' !!} {!! ($block->blockData['row_bg_image'] ?? null) ? 'background-image: url('.$block->blockData['row_bg_image'].');' : '' !!}" class="mb-4 block-row {{ ($block->blockData['row_bg_color'] ?? '') ? 'py-4' : 'p-0' }}">
             <div class="container main">
                 <div class="row position-relative" id="{{ $block->id }}">
                     @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)

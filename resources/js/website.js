@@ -4,6 +4,7 @@ window.$ = window.jQuery = require('jquery');
 window.sortable = require('jquery-ui/ui/widgets/sortable');
 require('../../node_modules/bxslider/dist/jquery.bxslider');
 window.fancybox = require('@fancyapps/fancybox/dist/jquery.fancybox');
+window.Dropzone = require('dropzone');
 
 var tinymce = require('tinymce/tinymce');
 require('tinymce/themes/silver');

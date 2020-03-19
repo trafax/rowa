@@ -6,4 +6,8 @@
     @if (Auth::user()->stock->count() > 0)
         <li class="list-group-item"><a href="{{ route('user.stock') }}">Mijn voorraad</a></li>
     @endif
+
+    @if (Auth::user()->products->count() > 0)
+        <li class="list-group-item"><a href="{{ route('user.products') }}">Mijn producten</a></li>
+    @endif
 </ul>

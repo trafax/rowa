@@ -100,15 +100,23 @@
                     <h3>2. Kies een betaalmethode</h3>
                     <span>Kies gewenste betaalmethode:</span>
                     <div class="d-block">
-                        @foreach ($paymentMethods as $key => $paymentMethod)
+                        @if (session()->get('cart.prices')['total'])
+                            @foreach ($paymentMethods as $key => $paymentMethod)
+                            <div class="my-1">
+                                <label>
+                                    <input type="radio" name="payment_method" value="{{ $paymentMethod->id }}" {{ $key == 0 ? 'checked' : '' }} class="mr-2">
+                                    {{ htmlspecialchars($paymentMethod->description) }}
+                                    <img src="{{ htmlspecialchars($paymentMethod->image->size1x) }}" srcset="{{ htmlspecialchars($paymentMethod->image->size2x) }} 2x" class="ml-2">
+                                </label>
+                            </div>
+                            @endforeach
+                        @endif
                         <div class="my-1">
                             <label>
-                                <input type="radio" name="payment_method" value="{{ $paymentMethod->id }}" {{ $key == 0 ? 'checked' : '' }} class="mr-2">
-                                <img src="{{ htmlspecialchars($paymentMethod->image->size1x) }}" srcset="{{ htmlspecialchars($paymentMethod->image->size2x) }} 2x" class="mr-2">
-                                {{ htmlspecialchars($paymentMethod->description) }}
+                                <input type="radio" name="payment_method" value="op_rekening" class="mr-2">
+                                Op rekening (voor klanten)
                             </label>
                         </div>
-                        @endforeach
                     </div>
 
                     <div class="form-group mt-4">

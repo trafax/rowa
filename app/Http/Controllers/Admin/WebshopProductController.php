@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\WebshopProduct;
+use App\Models\WebshopProductUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -44,6 +45,13 @@ class WebshopProductController extends Controller
         $request->request->set('slug', Str::slug($request->get('title')));
         $webshopProduct->fill($request->all());
         $webshopProduct->save();
+
+        $webshopProduct->users()->detach();
+        foreach ($request->get('user') ?? [] as $user) {
+            $webshopProduct->users()->attach([
+                'user_id' => $user
+            ]);
+        }
 
         self::attach_filters($webshopProduct, $request);
 

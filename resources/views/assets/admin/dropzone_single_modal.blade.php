@@ -18,15 +18,15 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         init: function() {
-                        this.on("sending", function(file, xhr, formData){
-                            formData.append('parent_id', '');
-                        });
-                        this.on("complete", function (file) {
-                            if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                                $('[data-id="{{ $request->get('id') }}"]').val('./assets/' + file.name);
-                            }
-                        });
-                    }
+                            this.on("sending", function(file, xhr, formData){
+                                formData.append('parent_id', '');
+                            });
+                            this.on("complete", function (file) {
+                                if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                                    $('[data-id="{{ $request->get('id') }}"]').val('./assets/' + file.name);
+                                }
+                            });
+                        }
                     });
                 });
 

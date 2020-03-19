@@ -12,7 +12,7 @@ class UserProduct extends Model
     public $incrementing = false;
 
     public $fillable = [
-        'user_id', 'title', 'qty', 'collie', 'email_no_stock'
+        'user_id', 'title', 'qty', 'collie', 'image', 'email_no_stock'
     ];
 
     public function user()

@@ -31,4 +31,9 @@ class WebshopProduct extends Model
     {
         return $this->belongsToMany('App\Models\WebshopFilter')->orderBy('fixed_price')->withPivot('id', 'sort', 'slug', 'value', 'fixed_price', 'added_price')->orderBy('pivot_sort');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

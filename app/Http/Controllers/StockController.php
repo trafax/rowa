@@ -38,10 +38,10 @@ class StockController extends Controller
             ];
 
             // Voorraad van het product bijwerken
-            $product->qty = $product->qty - ($qty * $product->collie);
+            $product->qty = $product->qty - ($qty * ($product->collie ?? 1));
             $product->save();
 
-            if (($product->qty ?? 0) / ($product->collie ?? 0) <= $qty && $product->email_no_stock == 1)
+            if (($product->qty ?? 0) / ($product->collie ?? 1) <= $qty && $product->email_no_stock == 1)
             {
                 $order['out_of_stock'][] =  $product;
             }

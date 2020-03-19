@@ -25,6 +25,7 @@
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#filters" role="tab" aria-controls="nav-home" aria-selected="true">Filters</a>
                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#slides" role="tab" aria-controls="nav-home" aria-selected="true">Afbeeldingen</a>
+                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#users" role="tab" aria-controls="nav-home" aria-selected="true">Klanten</a>
             </div>
         </nav>
         <div class="tab-content py-4" id="nav-tabContent">
@@ -111,6 +112,15 @@
             </div>
             <div class="tab-pane fade show" id="slides" role="tabpanel" aria-labelledby="nav-home-tab">
                 @include ('assets.admin.dropzone_multiple', ['parent_id' => $object->id, 'reload_url' => route('admin.webshopProduct.edit', $object), 'assets' => $object->assets, 'anchor' => 'images'])
+            </div>
+            <div class="tab-pane fade show" id="users" role="tabpanel" aria-labelledby="nav-home-tab">
+                <p class="bg-light p-2 border">Wanneer dit product aan een klant gekoppeld wordt zal dit product alleen bij de klant zichtbaar zijn.</p>
+                <hr>
+                @foreach (App\Models\User::where('role', 'customer')->get() as $user)
+                    <div class="form-group mb-0">
+                        <label><input type="checkbox" {{ in_array($user->id, $object->users()->get()->pluck('id')->toArray()) ? 'checked' : '' }} name="user[]" value="{{ $user->id }}"> {{ $user->firstname }} {{ $user->preposition }} {{ $user->lastname }} ({{ $user->company_name }})</label>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

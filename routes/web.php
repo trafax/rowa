@@ -13,7 +13,7 @@
 
 Route::get('/', 'PageController@homepage');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/', 'PageController@index');
@@ -103,12 +103,14 @@ Route::get('webusers/order/{webshopOrder}', 'UserController@order_view')->name('
 Route::get('webuser/stock', 'StockController@index')->name('user.stock')->middleware('auth');
 Route::post('webuser/stock/order', 'StockController@order')->name('user.stock.order')->middleware('auth');
 Route::get('webuser/stock/done', 'StockController@done')->name('user.stock.done')->middleware('auth');
+Route::get('webuser/products', 'UserController@products')->name('user.products')->middleware('auth');
 
 Route::post('order/create', 'OrderController@create')->name('order.create');
 Route::get('order/checkout', 'CheckoutController@doPayment')->name('doPayment');
 Route::get('order/{order_id}/return', 'CheckoutController@paymentDone')->name('paymentDone');
 Route::get('order/{order_id}/done', 'OrderController@done')->name('order.done');
 Route::post('checkout/webhook', 'CheckoutController@webhook')->name('checkout.webhook');
+Route::get('checkout/oprekening_done', 'CheckoutController@oprekeningDone')->name('checkout.oprekening_done');
 
 Route::post('form/send/{form}', 'FormController@send')->name('form.send');
 Route::get('form/getForms', 'FormController@getForms');

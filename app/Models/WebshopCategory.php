@@ -29,6 +29,6 @@ class WebshopCategory extends Model
 
     public function products()
     {
-        return $this->hasMany('App\Models\WebshopProduct', 'parent_id', 'id');
+        return $this->hasMany('App\Models\WebshopProduct', 'parent_id', 'id')->doesntHave('users');
     }
 }

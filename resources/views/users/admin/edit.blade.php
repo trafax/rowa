@@ -103,6 +103,11 @@
                             <input type="text" name="product_title[]" placeholder="Naam product" class="form-control">
                         </div>
                     </div>
+                    <div class="col">
+                        <div class="form-group">
+                            @include ('assets.admin.single', ['name' => 'image[]', 'value' => ''])
+                        </div>
+                    </div>
                     <div class="col-2">
                         <div class="form-group">
                             <input type="text" name="product_qty[]" placeholder="Aantal" class="form-control">
@@ -130,6 +135,9 @@
                     <div class="col">
                         <div class="form-group font-weight-bold">Product</div>
                     </div>
+                    <div class="col">
+                        <div class="form-group font-weight-bold">Afbeelding</div>
+                    </div>
                     <div class="col-2">
                         <div class="form-group font-weight-bold">Aantal</div>
                     </div>
@@ -154,6 +162,11 @@
                         <div class="col">
                             <div class="form-group">
                                 <input type="text" name="product_title[]" value="{{ $product->title }}" placeholder="Naam product" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                @include ('assets.admin.single', ['name' => 'image[]', 'value' => $product->image])
                             </div>
                         </div>
                         <div class="col-2">
@@ -186,6 +199,11 @@
                     <div class="col">
                         <div class="form-group">
                             <input type="text" name="product_title[]" placeholder="Naam product" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            @include ('assets.admin.single', ['name' => 'image[]', 'value' => ''])
                         </div>
                     </div>
                     <div class="col-2">

@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserProduct::class, 'user_id', 'id');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany('App\Models\WebshopProduct');
+    }
 }

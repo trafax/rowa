@@ -62,7 +62,11 @@
 
                     <div class="d-flex">
                         <span class="title">{{ $webshopProduct->title }}</span>
-                        <span class="price ml-auto">&euro; {{ price($webshopProduct->price) }}</span>
+                        <span class="price ml-auto">
+                            @if (($webshopProduct->users->count() > 0 &&  $webshopProduct->price > 0) || ($webshopProduct->users->count() < 1 &&  $webshopProduct->price > 0))
+                                &euro; {{ price($webshopProduct->price) }}
+                            @endif
+                        </span>
                     </div>
                     <span class="sku">Artikelnummer: {{ $webshopProduct->sku }}</span>
                     <div class="mt-4 border-top pt-4 pb-1">
