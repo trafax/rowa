@@ -48,7 +48,7 @@
                     <td><input type="checkbox" name="ids[]" class="check" value="{{ $obj->id }}"></td>
                     <td><a href="{{ route('admin.webshopProduct.edit', $obj) }}">{{ $obj->title }}</a></td>
                     <td>{{ $obj->slug }}</td>
-                    <td>{{ $obj->category->title }}</td>
+                    <td>{{ $obj->category->title ?? '' }}</td>
                     <td>{{ $obj->updated_at->format('d-m-Y \o\m H:i') }}</td>
                 </tr>
             @endforeach

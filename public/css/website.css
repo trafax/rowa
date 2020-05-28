@@ -10641,15 +10641,19 @@ body {
   background: #029fe0;
   display: block;
   color: #FFF;
-  line-height: 120px;
-  padding: 0 60px;
+  line-height: 60px;
+  padding: 0 30px;
   font-family: "dinbold", "sans-serif";
-  font-size: 48px;
+  font-size: 30px;
   margin-top: 40px;
   text-decoration: none;
+  text-align: center;
 }
 .home-slider .slide .caption .button:hover {
   background: #00447b;
+}
+.home-slider .page-slide {
+  height: 380px !important;
 }
 .home-slider .bx-wrapper {
   box-shadow: none;

@@ -78,11 +78,11 @@
     @foreach ($order->rules as $rule)
         <tr>
             <td>
-                {{ $rule->product->title }}<br>
+                {{ $rule->product->title ?? '' }}<br>
                 @foreach ($rule->options ?? [] as $optionTitle => $optionValue)
                     <strong>{{ $optionTitle }}:</strong> {{ $optionValue }}
                 @endforeach
-                @if ($rule->image)
+                @if ($rule->image ?? null)
                     <br>
                     <a href="{{ url($rule->image) }}" target="_blank">Geüpload bestand</a>
                 @endif

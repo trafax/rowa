@@ -62,7 +62,7 @@ class WebshopProductController extends Controller
     {
         $webshopProduct->filters()->detach();
 
-        foreach ($request->get('variation') as $filter_id => $filter)
+        foreach (($request->get('variation') ?? []) as $filter_id => $filter)
         {
             $filterRulesArr = explode("\r\n", $filter);
             foreach ($filterRulesArr as $key => $filterRule)

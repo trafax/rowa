@@ -1,6 +1,27 @@
 @extends('layouts.website')
 
 @section('content')
+
+@if ($page->assets->count() > 0)
+    <div class="home-slider d-none d-md-block">
+        <div class="bx-slider">
+            @foreach ($page->assets as $asset)
+                <div style="background-image: url('{{ asset('assets/' . $asset->file) }}')" class="slide page-slide">
+                    <div class="container main position-relative h-100">
+                        @if (isset($asset->file_data['title']))
+                            <div class="caption">
+                                <h3>{{ $asset->file_data['title'] ?? '' }}</h3>
+                                <h4>{{ $asset->file_data['description'] ?? '' }}</h4>
+                                <a href="{{ $asset->file_data['btn_link'] ?? '' }}" class="button">{{ $asset->file_data['btn_text'] ?? '' }}</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
+
     <div class="container main">
         <h1 class="mb-4">{{ $page->title }}</h1>
     </div>
@@ -13,9 +34,9 @@
 
     <div class="{{ Auth::user() && Auth::user()->role == 'admin' ? 'sortable' : '' }}" data-action="/admin/block/sort">
         @foreach ($page->blocks as $block)
-        <div style="{!! ($block->blockData['row_bg_color'] ?? null) ? 'background-color: '.$block->blockData['row_bg_color'].';' : '' !!} {!! ($block->blockData['row_bg_image'] ?? null) ? 'background-image: url('.$block->blockData['row_bg_image'].');' : '' !!}" class="mb-4 block-row {{ ($block->blockData['row_bg_color'] ?? '') ? 'py-4' : 'p-0' }}">
+        <div style="{!! ($block->blockData['row_bg_color'] ?? null) ? 'background-color: '.$block->blockData['row_bg_color'].';' : '' !!} {!! ($block->blockData['row_bg_image'] ?? null) ? 'background-image: url('.$block->blockData['row_bg_image'].');' : '' !!}" class="block-row {{ ($block->blockData['row_bg_color'] ?? '') ? 'py-4' : 'p-0' }}" id="{{ $block->id }}">
             <div class="container main">
-                <div class="row position-relative" id="{{ $block->id }}">
+                <div class="row position-relative" >
                     @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
                         <div class="col-md">
                             <div class="{{ ($block->blockData['col_'.$i.'_bg_color'] ?? '') ? 'p-3' : 'p-0' }}" style="{!! ($block->blockData['col_'.$i.'_bg_color'] ?? null) ? 'background-color: '.$block->blockData['col_'.$i.'_bg_color'].';' : '' !!}">

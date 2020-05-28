@@ -221,17 +221,21 @@ body {
                 background: $blue_color;
                 display: block;
                 color: #FFF;
-                line-height: 120px;
-                padding: 0 60px;
+                line-height: 60px;
+                padding: 0 30px;
                 font-family: 'dinbold', 'sans-serif';
-                font-size: 48px;
+                font-size: 30px;
                 margin-top: 40px;
                 text-decoration: none;
+                text-align: center;
                 &:hover {
                     background: $blue_dark_color;
                 }
             }
         }
+    }
+    .page-slide {
+        height: 380px !important;
     }
     .bx-wrapper {
         box-shadow: none;

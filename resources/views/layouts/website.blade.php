@@ -8,6 +8,7 @@
     <script src="{{ mix('js/website.js') }}"></script>
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/website.css') }}" rel="stylesheet">
 </head>
@@ -41,7 +42,7 @@
                     </form>
                 </div>
                 <div class="d-sm-block d-lg-none float-right float-lg-none menu-toggle">
-                    <a href="javascript:;" class="menu-toggle">TOGGLE</a>
+                    <a href="javascript:;" class="menu-toggle"><i class="fas fa-bars h2"></i></a>
                 </div>
             </div>
             <div id="main-menu" class="float-right float-lg-none d-none d-lg-block">
