@@ -10653,7 +10653,8 @@ body {
   background: #00447b;
 }
 .home-slider .page-slide {
-  height: 380px !important;
+  height: 480px !important;
+  background-position: center;
 }
 .home-slider .bx-wrapper {
   box-shadow: none;
