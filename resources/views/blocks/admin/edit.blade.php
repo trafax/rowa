@@ -39,10 +39,24 @@
                             </div>
                             <hr>
                             @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
-                                <div class="form-group">
-                                    <label>Achtergrondkleur kolom {{ $i }}</label>
-                                    <input type="text" name="blockData[col_{{ $i }}_bg_color]" class="form-control" value="{{ $block->blockData['col_'.$i.'_bg_color'] ?? '' }}">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Achtergrondkleur kolom {{ $i }}</label>
+                                        <input type="text" name="blockData[col_{{ $i }}_bg_color]" class="form-control" value="{{ $block->blockData['col_'.$i.'_bg_color'] ?? '' }}">
+                                    </div>
                                 </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Kolom breedte</label>
+                                        <select name="blockData[col_{{ $i }}_width]" class="form-control">
+                                            @for($a=1;$a<=12;$a++)
+                                                <option {{ @$block->blockData['col_'.$i.'_width'] == $a ? 'selected' : '' }} value="{{ $a }}">{{ $a }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             @endfor
                         </div>
                     </div>

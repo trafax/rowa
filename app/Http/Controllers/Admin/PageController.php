@@ -18,7 +18,7 @@ class PageController extends Controller
         }
         else
         {
-            $objects = Page::where('parent_id', 0)->orderBy('sort')->get();
+            $objects = Page::where('parent_id', '0')->orderBy('sort')->get();
         }
 
         return view('pages.admin.index')->with('objects', $objects);
@@ -65,7 +65,9 @@ class PageController extends Controller
     {
         foreach ($request->get('items') as $index => $id)
         {
-            Page::find($id)->update(['sort' => $index]);
+            $page = Page::find($id);
+            $page->sort = $index;
+            $page->save();
         }
     }
 }

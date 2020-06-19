@@ -16,6 +16,8 @@ require('tinymce/plugins/lists');
 require('tinymce/plugins/advlist');
 window.bsCustomFileInput = require('bs-custom-file-input');
 
+window.lightSlider = require('lightslider');
+
 
 require('bootstrap');
 

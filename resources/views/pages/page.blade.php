@@ -38,7 +38,7 @@
             <div class="container main">
                 <div class="row position-relative" >
                     @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
-                        <div class="col-md">
+                        <div class="col-md {{ ($block->blockData['col_'.$i.'_width'] ?? null) ? 'col-md-' . $block->blockData['col_'.$i.'_width'] : '' }}">
                             <div class="{{ ($block->blockData['col_'.$i.'_bg_color'] ?? '') ? 'p-3' : 'p-0' }}" style="{!! ($block->blockData['col_'.$i.'_bg_color'] ?? null) ? 'background-color: '.$block->blockData['col_'.$i.'_bg_color'].';' : '' !!}">
                             @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor border mb-0" data-identifier="{{ $block->id }}-{{ $i }}" data-action="/admin/text/store"> @endif
                                 @php

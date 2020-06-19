@@ -1,9 +1,36 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import '../../node_modules/lightslider/dist/css/lightslider.min.css';
+
 $main_text_color: #2a363b;
 $blue_color: #029fe0;
 $blue_dark_color: #00447b;
+
+.blue-heading {
+    color: #12a1de;
+    font-family: "dinbold", "sans-serif";
+}
+
+.button-blue {
+    color: #FFF;
+    background-color: #12a1de;
+}
+
+.referentie {
+    height: 50px;
+    display: block;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.projectslide {
+    height: 150px;
+    display: block;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 body {
     font-family: 'dinlight', sans-serif;
@@ -200,11 +227,13 @@ body {
             position: absolute;
             right: 60px;
             top: 30%;
+            width: 50%;
             -ms-transform: translateY(-30%);
             transform: translateY(-30%);
             @media (min-width: 1400px) {
                 right: 60px;
                 top: 50%;
+                width: 30%;
                 -ms-transform: translateY(-50%);
                 transform: translateY(-50%);
             }

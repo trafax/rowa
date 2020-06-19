@@ -78,6 +78,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('form_value/{form_value}/destroy', 'FormValueController@destroy')->name('form_value.destroy');
     Route::post('form_value/sort', 'FormValueController@sort')->name('form_value.sort');
 
+    Route::resource('project', 'ProjectController');
+    Route::resource('referentie', 'ReferentieController');
 });
 
 Route::get('logout', 'Auth\LoginController@logout');
@@ -114,3 +116,5 @@ Route::get('checkout/oprekening_done', 'CheckoutController@oprekeningDone')->nam
 
 Route::post('form/send/{form}', 'FormController@send')->name('form.send');
 Route::get('form/getForms', 'FormController@getForms');
+
+Route::post('mailchimp/subscribe', 'MailchimpController@subscribe')->name('mailchimp.subscribe');

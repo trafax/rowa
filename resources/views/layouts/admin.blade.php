@@ -62,6 +62,12 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.form.index') }}" class="nav-link">Formulieren</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.project.index') }}" class="nav-link">Projecten</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.referentie.index') }}" class="nav-link">Referenties</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Instellingen

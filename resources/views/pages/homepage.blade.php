@@ -59,7 +59,7 @@
             <div class="container main">
                 <div class="row position-relative" id="{{ $block->id }}">
                     @for($i=1; $i<=($block->blockData['cols'] ?? 1); $i++)
-                        <div class="col-md">
+                        <div class="col-md {{ ($block->blockData['col_'.$i.'_width'] ?? null) ? 'col-md-' . $block->blockData['col_'.$i.'_width'] : '' }}">
                             <div class="{{ ($block->blockData['col_'.$i.'_bg_color'] ?? '') ? 'p-3' : 'p-0' }} mb-4" style="{!! ($block->blockData['col_'.$i.'_bg_color'] ?? null) ? 'background-color: '.$block->blockData['col_'.$i.'_bg_color'].';' : '' !!}">
                             @if (Auth::user() && Auth::user()->role == 'admin') <div class="inline-editor border mb-3" data-identifier="{{ $block->id }}-{{ $i }}" data-action="/admin/text/store"> @endif
                                 @php
@@ -93,8 +93,107 @@
                     @endif
 
                 </div>
+
             </div>
+
         </div>
         @endforeach
+    </div>
+
+    <div class="container main my-4">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#projects").lightSlider({
+                    pager: false,
+                    controls: false,
+                    item: 5,
+                    auto: true,
+                    loop: true,
+                    speed: 800,
+                    pause: 4000,
+                });
+            });
+        </script>
+
+        <h3 class="text-center mb-4 blue-heading">ONLANGS AFGEROND</h3>
+        <hr class="mb-4">
+        <ul id="projects" class="mb-4">
+            @foreach (App\Models\Asset::where('parent_id', 'projects')->orderBy('sort')->get() as $asset)
+                <li><a href="{{ $asset->file_data['btn_link'] ?? 'javascript:;' }}" {!! @$asset->file_data['btn_link'] ? 'target="_blank"' : '' !!} class="projectslide" style="background-image: url({{ asset('assets/' . $asset->file) }});"></a></li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="container main my-4">
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#referenties").lightSlider({
+                    pager: false,
+                    controls: false,
+                    item: 5,
+                    auto: false,
+                    loop: true,
+                    speed: 800,
+                    pause: 4000,
+                });
+            });
+        </script>
+
+        <h3 class="text-center mb-4 blue-heading">REFERENTIES</h3>
+        <hr class="mb-4">
+        <ul id="referenties" class="mb-4">
+            @foreach (App\Models\Asset::where('parent_id', 'referenties')->orderBy('sort')->get() as $asset)
+                <li><a href="{{ $asset->file_data['btn_link'] ?? 'javascript:;' }}" {!! @$asset->file_data['btn_link'] ? 'target="_blank"' : '' !!} class="referentie" style="background-image: url({{ asset('assets/' . $asset->file) }});"></a></li>
+            @endforeach
+        </ul>
+    </div>
+
+    <div class="container main my-4 pt-4" id="mailchimp">
+        <div class="row">
+            <div class="col">
+                <div class="cardd">
+                     <div class="h3 blue-heading text-center">Aanmelden nieuwsbrief</div>
+                     <hr>
+                     <div class="card-bodyy mt-4">
+                         @if (session('message'))
+                             <div class="alert alert-success">
+                                 {!! session('message') !!}
+                             </div>
+                         @endif
+                         <form method="post" action="{{ route('mailchimp.subscribe') }}">
+                             @csrf
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <div class="form-group">
+                                         <label>Voornaam</label>
+                                         <input type="text" name="fname" class="form-control" required>
+                                         @error('fname') <span class="text-danger">{{ $message }}</span> @enderror
+                                     </div>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <div class="form-group">
+                                         <label>Achternaam</label>
+                                         <input type="text" name="lname" class="form-control" required>
+                                         @error('lname') <span class="text-danger">{{ $message }}</span> @enderror
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-md-6">
+                                     <div class="form-group">
+                                         <label>E-mailadres</label>
+                                         <input type="email" name="email" class="form-control" required>
+                                         @error('email') <span class="text-danger">{{ $message }}</span> @enderror
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <button class="btn button-blue">Inschrijven</button>
+                             </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+         </div>
     </div>
 @endsection
