@@ -31,6 +31,6 @@
         "dropzone": "^5.5.1",
         "jquery-ui": "^1.12.1",
         "lightslider": "^1.1.6",
-        "tinymce": "^5.1.5"
+        "tinymce": "^5.7.1"
     }
 }
